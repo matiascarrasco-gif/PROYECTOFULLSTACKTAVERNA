@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="estilos.css">
     <style>
         /* ============================================
-           BLOG — ESTILOS EXCLUSIVOS
+           ESTILOS EXCLUSIVOS SOLO PARA DESTACAR EL BLOG
         ============================================ */
         .blog-hero {
             background: linear-gradient(135deg, #0f0f1a 0%, #1a0533 50%, #0d1b2e 100%);
@@ -427,7 +427,7 @@
             }
         }
 
-        /* Modal de lectura de noticias */
+        /* Estilo para las lecturas de las noticias con zoom */
         .modal-noticia-overlay {
             position: fixed;
             top: 0;
@@ -600,7 +600,6 @@
 </head>
 
 <body>
-
     <header>
         <h1>
             <a href="Index.html">
@@ -623,7 +622,7 @@
 
     <main class="contenedor">
 
-        <!-- HERO -->
+        <!-- Secciones del blog destacadas -->
         <div class="blog-hero">
             <div class="blog-hero-tag">🎮 Noticias Gaming</div>
             <h2>El Blog de La Taverna</h2>
@@ -640,7 +639,7 @@
             <button class="blog-filtro-btn" onclick="filtrarBlog('opinion', this)">💬 Opinión</button>
         </div>
 
-        <!-- ARTÍCULO DESTACADO -->
+        <!-- articulo del blog mas destacado -->
         <div class="blog-featured" data-cat="juegos">
             <div class="blog-featured-img">
                 <img src="images/jasonylucia.jpg" alt="Grand Theft Auto VI">
@@ -873,7 +872,7 @@
             <p class="newsletter-ok" id="newsletterOk">✅ ¡Suscripción exitosa! Gracias por unirte.</p>
         </div>
 
-        <!-- MODAL LECTURA NOTICIA -->
+        <!-- APARTADO PARA LECTURA INDIVIDUAL DE CADA NOTICIA -->
         <div class="modal-noticia-overlay" id="modalNoticia" onclick="cerrarNoticia(event)">
             <div class="modal-noticia-contenedor" onclick="event.stopPropagation()">
                 <button class="modal-noticia-cerrar" onclick="cerrarNoticiaDirecto()">✕</button>
