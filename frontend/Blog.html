@@ -1,0 +1,1150 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog | La Taverna — Noticias Gaming</title>
+    <link rel="stylesheet" href="estilos.css">
+    <style>
+        /* ============================================
+           BLOG — ESTILOS EXCLUSIVOS
+        ============================================ */
+        .blog-hero {
+            background: linear-gradient(135deg, #0f0f1a 0%, #1a0533 50%, #0d1b2e 100%);
+            border-radius: 16px;
+            padding: 54px 40px;
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .blog-hero::before {
+            content: "";
+            position: absolute;
+            width: 380px;
+            height: 380px;
+            background: radial-gradient(circle, rgba(192, 38, 211, 0.22) 0%, transparent 70%);
+            top: -100px;
+            right: -60px;
+            border-radius: 50%;
+        }
+
+        .blog-hero::after {
+            content: "";
+            position: absolute;
+            width: 260px;
+            height: 260px;
+            background: radial-gradient(circle, rgba(219, 39, 119, 0.16) 0%, transparent 70%);
+            bottom: -80px;
+            left: -40px;
+            border-radius: 50%;
+        }
+
+        .blog-hero-tag {
+            display: inline-block;
+            background: linear-gradient(135deg, #db2777, #9333ea);
+            color: white;
+            font-size: 0.78rem;
+            font-weight: bold;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 5px 16px;
+            border-radius: 30px;
+            margin-bottom: 18px;
+        }
+
+        .blog-hero h2 {
+            font-size: 2.6rem;
+            margin: 0 0 14px;
+            color: white !important;
+            border: none !important;
+            line-height: 1.2;
+        }
+
+        .blog-hero p {
+            color: rgba(255, 255, 255, 0.72);
+            font-size: 1.05rem;
+            max-width: 560px;
+            margin: 0 auto;
+        }
+
+        /* Filtros de categoría */
+        .blog-filtros {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 28px;
+            justify-content: center;
+        }
+
+        .blog-filtro-btn {
+            padding: 8px 20px;
+            border: 2px solid #e5e7eb;
+            background: white;
+            border-radius: 30px;
+            font-size: 0.88rem;
+            font-weight: bold;
+            cursor: pointer;
+            color: #444;
+            transition: all 0.22s ease;
+        }
+
+        .blog-filtro-btn:hover,
+        .blog-filtro-btn.activo {
+            background: linear-gradient(135deg, #db2777, #9333ea);
+            border-color: transparent;
+            color: white;
+        }
+
+        /* Artículo destacado */
+        .blog-featured {
+            display: grid;
+            grid-template-columns: 1.3fr 1fr;
+            gap: 0;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.13);
+            margin-bottom: 30px;
+            background: white;
+        }
+
+        .blog-featured-img {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .blog-featured-img img {
+            width: 100%;
+            height: 100%;
+            min-height: 320px;
+            object-fit: cover;
+            border-radius: 0;
+            transition: transform 0.4s ease;
+        }
+
+        .blog-featured:hover .blog-featured-img img {
+            transform: scale(1.04);
+        }
+
+        .blog-featured-badge {
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            background: linear-gradient(135deg, #db2777, #9333ea);
+            color: white;
+            font-size: 0.75rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            padding: 4px 12px;
+            border-radius: 20px;
+            letter-spacing: 1px;
+        }
+
+        .blog-featured-content {
+            padding: 36px 32px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .blog-featured-meta {
+            font-size: 0.82rem;
+            color: #999;
+            margin-bottom: 10px;
+        }
+
+        .blog-featured-meta span {
+            margin-right: 12px;
+        }
+
+        .blog-featured-content h3 {
+            font-size: 1.65rem;
+            color: #111;
+            margin: 0 0 14px;
+            line-height: 1.3;
+        }
+
+        .blog-featured-content p {
+            color: #555;
+            line-height: 1.6;
+            font-size: 0.96rem;
+            margin-bottom: 20px;
+        }
+
+        .blog-read-btn {
+            display: inline-block;
+            width: fit-content;
+            padding: 10px 22px;
+            background: linear-gradient(135deg, #db2777, #9333ea);
+            color: white;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9rem;
+            transition: all 0.25s ease;
+            box-shadow: 0 3px 12px rgba(219, 39, 119, 0.3);
+        }
+
+        .blog-read-btn:hover {
+            background: linear-gradient(135deg, #be185d, #7e22ce);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(147, 51, 234, 0.45);
+            color: white;
+            text-decoration: none;
+        }
+
+        /* Grid de artículos */
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+            margin-bottom: 30px;
+        }
+
+        .blog-card {
+            background: white;
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.07);
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 30px rgba(192, 38, 211, 0.14);
+        }
+
+        .blog-card-img {
+            position: relative;
+            overflow: hidden;
+            height: 185px;
+        }
+
+        .blog-card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 0;
+            transition: transform 0.4s ease;
+        }
+
+        .blog-card:hover .blog-card-img img {
+            transform: scale(1.07);
+        }
+
+        .blog-card-cat {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            color: white;
+            font-size: 0.72rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            padding: 3px 10px;
+            border-radius: 14px;
+            letter-spacing: 0.8px;
+        }
+
+        .cat-juegos {
+            background: #9333ea;
+        }
+
+        .cat-consolas {
+            background: #2563eb;
+        }
+
+        .cat-accesorios {
+            background: #0891b2;
+        }
+
+        .cat-setup {
+            background: #16a34a;
+        }
+
+        .cat-opinion {
+            background: #db2777;
+        }
+
+        .blog-card-body {
+            padding: 18px 20px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .blog-card-meta {
+            font-size: 0.78rem;
+            color: #aaa;
+            margin-bottom: 8px;
+        }
+
+        .blog-card-meta span {
+            margin-right: 10px;
+        }
+
+        .blog-card h3 {
+            font-size: 1rem;
+            color: #111;
+            margin: 0 0 10px;
+            line-height: 1.4;
+            transition: color 0.2s;
+        }
+
+        .blog-card:hover h3 {
+            color: #c026d3;
+        }
+
+        .blog-card p {
+            color: #666;
+            font-size: 0.87rem;
+            line-height: 1.5;
+            flex: 1;
+            margin-bottom: 16px;
+        }
+
+        .blog-card-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-top: 1px solid #f3e8ff;
+            padding-top: 12px;
+        }
+
+        .blog-card-author {
+            font-size: 0.8rem;
+            color: #888;
+            font-weight: bold;
+        }
+
+        .blog-card-link {
+            font-size: 0.82rem;
+            color: #c026d3;
+            font-weight: bold;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .blog-card-link:hover {
+            color: #9333ea;
+            text-decoration: underline;
+        }
+
+        /* Newsletter */
+        .blog-newsletter {
+            background: linear-gradient(135deg, #1a0533, #0d1b2e);
+            border-radius: 16px;
+            padding: 46px 40px;
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .blog-newsletter::before {
+            content: "";
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(192, 38, 211, 0.2) 0%, transparent 70%);
+            top: -80px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 50%;
+        }
+
+        .blog-newsletter h3 {
+            font-size: 1.7rem;
+            color: white;
+            margin: 0 0 10px;
+        }
+
+        .blog-newsletter p {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 24px;
+            font-size: 0.97rem;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 10px;
+            max-width: 460px;
+            margin: 0 auto;
+            justify-content: center;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 12px 18px;
+            border-radius: 8px;
+            border: none;
+            font-size: 0.95rem;
+            outline: none;
+        }
+
+        .newsletter-form button {
+            padding: 12px 24px;
+            background: linear-gradient(135deg, #db2777, #9333ea);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.25s;
+        }
+
+        .newsletter-form button:hover {
+            background: linear-gradient(135deg, #be185d, #7e22ce);
+            transform: translateY(-1px);
+        }
+
+        .newsletter-ok {
+            display: none;
+            color: #a3e635;
+            font-weight: bold;
+            font-size: 1rem;
+            margin-top: 12px;
+        }
+
+        @media (max-width: 900px) {
+            .blog-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .blog-featured {
+                grid-template-columns: 1fr;
+            }
+
+            .blog-featured-img img {
+                min-height: 240px;
+            }
+        }
+
+        /* Modal de lectura de noticias */
+        .modal-noticia-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 10, 20, 0.85);
+            backdrop-filter: blur(8px);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .modal-noticia-overlay.activo {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-noticia-contenedor {
+            background: #ffffff;
+            border-radius: 20px;
+            max-width: 800px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            transform: translateY(30px);
+            transition: transform 0.3s ease;
+            padding: 35px;
+        }
+
+        .modal-noticia-overlay.activo .modal-noticia-contenedor {
+            transform: translateY(0);
+        }
+
+        .modal-noticia-cerrar {
+            position: absolute;
+            top: 18px;
+            right: 22px;
+            background: #f1f5f9;
+            border: none;
+            border-radius: 50%;
+            width: 38px;
+            height: 38px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #475569;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .modal-noticia-cerrar:hover {
+            background: #e2e8f0;
+            color: #0f172a;
+            transform: scale(1.1);
+        }
+
+        .modal-noticia-cat {
+            display: inline-block;
+            background: linear-gradient(135deg, #db2777, #9333ea);
+            color: white;
+            font-size: 0.8rem;
+            font-weight: bold;
+            padding: 4px 14px;
+            border-radius: 20px;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+
+        .modal-noticia-header h2 {
+            font-size: 1.8rem;
+            color: #1e293b;
+            margin: 0 0 14px;
+            line-height: 1.3;
+            border: none;
+        }
+
+        .modal-noticia-meta {
+            display: flex;
+            gap: 16px;
+            font-size: 0.88rem;
+            color: #64748b;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+        }
+
+        .modal-noticia-img-wrap {
+            width: 100%;
+            max-height: 380px;
+            border-radius: 14px;
+            overflow: hidden;
+            margin-bottom: 25px;
+        }
+
+        .modal-noticia-img-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .modal-noticia-cuerpo {
+            color: #334155;
+            font-size: 1.02rem;
+            line-height: 1.75;
+        }
+
+        .modal-noticia-cuerpo p {
+            margin-bottom: 18px;
+        }
+
+        .modal-noticia-cuerpo h4 {
+            font-size: 1.2rem;
+            color: #0f172a;
+            margin: 22px 0 10px;
+        }
+
+        .modal-noticia-cuerpo blockquote {
+            border-left: 4px solid #c026d3;
+            padding: 14px 18px;
+            margin: 20px 0;
+            font-style: italic;
+            color: #475569;
+            background: #fdf4ff;
+            border-radius: 0 10px 10px 0;
+        }
+
+        .modal-noticia-footer {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #e2e8f0;
+            text-align: right;
+        }
+
+        .btn-cerrar-modal {
+            background: linear-gradient(135deg, #db2777, #9333ea);
+            color: white;
+            border: none;
+            padding: 12px 28px;
+            border-radius: 10px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .btn-cerrar-modal:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(147, 51, 234, 0.4);
+        }
+
+        .clickable-card {
+            cursor: pointer;
+        }
+
+        @media (max-width: 600px) {
+            .blog-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .blog-hero h2 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>
+            <a href="Index.html">
+                <img src="images/logosinfondo.png" alt="La Taverna" class="logo-titulo">
+            </a>
+        </h1>
+        <nav class="menu-principal">
+            <a href="Juegos.html">Juegos Digitales</a>
+            <a href="Consolas.html">Consolas</a>
+            <a href="PcGamers.html">PC Gamers</a>
+            <a href="Mouse-Mousepad.html">Mouse / Mousepad</a>
+            <a href="SillasGamers.html">Sillas Gamers</a>
+            <a href="Accesorios.html">Accesorios</a>
+            <a href="Poleras.html">Poleras Personalizadas</a>
+            <a href="Poleron.html">Polerones Gamers Personalizados</a>
+            <a href="Blog.html">Blog</a>
+            <a href="ServicioTecnico.html">Servicio Tecnico</a>
+        </nav>
+    </header>
+
+    <main class="contenedor">
+
+        <!-- HERO -->
+        <div class="blog-hero">
+            <div class="blog-hero-tag">🎮 Noticias Gaming</div>
+            <h2>El Blog de La Taverna</h2>
+            <p>Noticias, reviews y novedades del mundo gamer. Siempre al tanto de lo que se viene.</p>
+        </div>
+
+        <!-- FILTROS -->
+        <div class="blog-filtros">
+            <button class="blog-filtro-btn activo" onclick="filtrarBlog('todos', this)">Todos</button>
+            <button class="blog-filtro-btn" onclick="filtrarBlog('juegos', this)">🎮 Juegos</button>
+            <button class="blog-filtro-btn" onclick="filtrarBlog('consolas', this)">🕹️ Consolas</button>
+            <button class="blog-filtro-btn" onclick="filtrarBlog('accesorios', this)">🖥️ Accesorios</button>
+            <button class="blog-filtro-btn" onclick="filtrarBlog('setup', this)">💡 Setup</button>
+            <button class="blog-filtro-btn" onclick="filtrarBlog('opinion', this)">💬 Opinión</button>
+        </div>
+
+        <!-- ARTÍCULO DESTACADO -->
+        <div class="blog-featured" data-cat="juegos">
+            <div class="blog-featured-img">
+                <img src="images/jasonylucia.jpg" alt="Grand Theft Auto VI">
+                <span class="blog-featured-badge">⭐ Destacado</span>
+            </div>
+            <div class="blog-featured-content">
+                <div class="blog-featured-meta">
+                    <span>🗓️ 10 Sep 2026</span>
+                    <span>⏱️ 6 min de lectura</span>
+                    <span>🎮 Juegos</span>
+                </div>
+                <h3>GTA VI: Todo lo que debes saber antes del lanzamiento definitivo</h3>
+                <p>Rockstar Games ha confirmado la fecha de lanzamiento de Grand Theft Auto VI para finales de 2026. El
+                    juego llega con un mapa enorme inspirado en Miami, dos protagonistas jugables y una historia que
+                    promete superar a GTA V. Aquí te contamos todo.</p>
+                <a href="javascript:void(0)" onclick="abrirNoticia('gta6')" class="blog-read-btn">Leer artículo →</a>
+            </div>
+        </div>
+
+        <!-- GRID DE ARTÍCULOS -->
+        <div class="blog-grid" id="blogGrid">
+
+            <!-- FC 27 -->
+            <div class="blog-card" data-cat="juegos">
+                <div class="blog-card-img">
+                    <img src="images/juegos/fc27-ps5-0.webp" alt="FC 27">
+                    <span class="blog-card-cat cat-juegos">Juegos</span>
+                </div>
+                <div class="blog-card-body">
+                    <div class="blog-card-meta">
+                        <span>🗓️ 5 Sep 2026</span>
+                        <span>⏱️ 4 min</span>
+                    </div>
+                    <h3>FC 27: El fútbol virtual nunca fue tan real</h3>
+                    <p>EA Sports FC 27 llega con un nuevo motor físico, animaciones mejoradas y el regreso del modo
+                        carrera renovado. ¿Vale la pena el upgrade desde el FC 26?</p>
+                    <div class="blog-card-footer">
+                        <span class="blog-card-author">👤 Redacción LT</span>
+                        <a href="javascript:void(0)" onclick="abrirNoticia('fc27')" class="blog-card-link">Leer más
+                            →</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Battlefield 6 -->
+            <div class="blog-card" data-cat="juegos">
+                <div class="blog-card-img">
+                    <img src="images/juegos/battlefield-6-ps5.webp" alt="Battlefield 6">
+                    <span class="blog-card-cat cat-juegos">Juegos</span>
+                </div>
+                <div class="blog-card-body">
+                    <div class="blog-card-meta">
+                        <span>🗓️ 2 Sep 2026</span>
+                        <span>⏱️ 5 min</span>
+                    </div>
+                    <h3>Battlefield 6: ¿Por fin de vuelta a su mejor forma?</h3>
+                    <p>Después del polémico lanzamiento de BF 2042, la saga promete redención con mapas destructibles de
+                        nueva generación y un modo campaña épico.</p>
+                    <div class="blog-card-footer">
+                        <span class="blog-card-author">👤 Gamer Review</span>
+                        <a href="javascript:void(0)" onclick="abrirNoticia('bf6')" class="blog-card-link">Leer más →</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Nintendo Switch 2 -->
+            <div class="blog-card" data-cat="consolas">
+                <div class="blog-card-img">
+                    <img src="images/consolas/nintendoswitch2.png" alt="Nintendo Switch 2">
+                    <span class="blog-card-cat cat-consolas">Consolas</span>
+                </div>
+                <div class="blog-card-body">
+                    <div class="blog-card-meta">
+                        <span>🗓️ 28 Ago 2026</span>
+                        <span>⏱️ 4 min</span>
+                    </div>
+                    <h3>Nintendo Switch 2: Análisis completo tras el primer mes</h3>
+                    <p>La nueva consola portátil de Nintendo lleva más de un mes en el mercado. ¿Justifica su precio?
+                        Rendimiento, catálogo y compatibilidad con juegos anteriores.</p>
+                    <div class="blog-card-footer">
+                        <span class="blog-card-author">👤 Redacción LT</span>
+                        <a href="javascript:void(0)" onclick="abrirNoticia('switch2')" class="blog-card-link">Leer más
+                            →</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RTX 5090 -->
+            <div class="blog-card" data-cat="accesorios">
+                <div class="blog-card-img">
+                    <img src="images/accesorios/Rtx5090.webp" alt="RTX 5090">
+                    <span class="blog-card-cat cat-accesorios">Accesorios</span>
+                </div>
+                <div class="blog-card-body">
+                    <div class="blog-card-meta">
+                        <span>🗓️ 22 Ago 2026</span>
+                        <span>⏱️ 7 min</span>
+                    </div>
+                    <h3>RTX 5090: La GPU más brutal del mercado llega a La Taverna</h3>
+                    <p>La Nvidia GeForce RTX 5090 ya está disponible. 32GB GDDR7, ray tracing en tiempo real y
+                        rendimiento que deja sin palabras. Benchmarks y precios reales.</p>
+                    <div class="blog-card-footer">
+                        <span class="blog-card-author">👤 Hardware Team</span>
+                        <a href="javascript:void(0)" onclick="abrirNoticia('rtx5090')" class="blog-card-link">Leer más
+                            →</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Resident Evil Requiem -->
+            <div class="blog-card" data-cat="juegos">
+                <div class="blog-card-img">
+                    <img src="images/juegos/resident-evil-requiem-ps5.webp" alt="Resident Evil Requiem">
+                    <span class="blog-card-cat cat-juegos">Juegos</span>
+                </div>
+                <div class="blog-card-body">
+                    <div class="blog-card-meta">
+                        <span>🗓️ 15 Ago 2026</span>
+                        <span>⏱️ 5 min</span>
+                    </div>
+                    <h3>Resident Evil Requiem: El horror que no te dejará dormir</h3>
+                    <p>Capcom vuelve a los orígenes del survival horror con un juego que combina tensión psicológica,
+                        puzzles inteligentes y momentos que harán saltar del asiento.</p>
+                    <div class="blog-card-footer">
+                        <span class="blog-card-author">👤 Terror Gamer</span>
+                        <a href="javascript:void(0)" onclick="abrirNoticia('requiem')" class="blog-card-link">Leer más
+                            →</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Setup ideal -->
+            <div class="blog-card" data-cat="setup">
+                <div class="blog-card-img">
+                    <img src="images/accesorios/teclado1.webp" alt="Setup Gamer">
+                    <span class="blog-card-cat cat-setup">Setup</span>
+                </div>
+                <div class="blog-card-body">
+                    <div class="blog-card-meta">
+                        <span>🗓️ 10 Ago 2026</span>
+                        <span>⏱️ 5 min</span>
+                    </div>
+                    <h3>5 accesorios gaming que transformarán tu setup en 2026</h3>
+                    <p>Desde teclados mecánicos hasta mousepads XL con RGB: los periféricos que marcan la diferencia en
+                        rendimiento y comodidad para largas sesiones de juego.</p>
+                    <div class="blog-card-footer">
+                        <span class="blog-card-author">👤 Setup Tips</span>
+                        <a href="javascript:void(0)" onclick="abrirNoticia('setup')" class="blog-card-link">Leer más
+                            →</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cyberpunk opinión -->
+            <div class="blog-card" data-cat="opinion">
+                <div class="blog-card-img">
+                    <img src="images/juegos/cyberpunk-2077-ps5.webp" alt="Cyberpunk 2077">
+                    <span class="blog-card-cat cat-opinion">Opinión</span>
+                </div>
+                <div class="blog-card-body">
+                    <div class="blog-card-meta">
+                        <span>🗓️ 5 Ago 2026</span>
+                        <span>⏱️ 6 min</span>
+                    </div>
+                    <h3>¿Por qué Cyberpunk 2077 sigue siendo relevante en 2026?</h3>
+                    <p>Han pasado años desde su lanzamiento caótico y hoy se considera uno de los mejores RPGs de la
+                        generación. Reflexión sobre su redención y legado.</p>
+                    <div class="blog-card-footer">
+                        <span class="blog-card-author">👤 Columna LT</span>
+                        <a href="javascript:void(0)" onclick="abrirNoticia('cyberpunk')" class="blog-card-link">Leer más
+                            →</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- God of War -->
+            <div class="blog-card" data-cat="juegos">
+                <div class="blog-card-img">
+                    <img src="images/juegos/god-of-war-ragnarok-ps5.webp" alt="God of War Ragnarok">
+                    <span class="blog-card-cat cat-juegos">Juegos</span>
+                </div>
+                <div class="blog-card-body">
+                    <div class="blog-card-meta">
+                        <span>🗓️ 1 Ago 2026</span>
+                        <span>⏱️ 4 min</span>
+                    </div>
+                    <h3>God of War Ragnarok: Por qué es el mejor juego de PS5</h3>
+                    <p>Si aún no lo has jugado, te explicamos por qué Ragnarok sigue siendo el estándar de calidad en
+                        exclusivos de Sony dos años después de su lanzamiento.</p>
+                    <div class="blog-card-footer">
+                        <span class="blog-card-author">👤 Redacción LT</span>
+                        <a href="javascript:void(0)" onclick="abrirNoticia('gow')" class="blog-card-link">Leer más →</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PS5 Slim -->
+            <div class="blog-card" data-cat="consolas">
+                <div class="blog-card-img">
+                    <img src="images/consolas/ps5slim.png" alt="PS5 Slim">
+                    <span class="blog-card-cat cat-consolas">Consolas</span>
+                </div>
+                <div class="blog-card-body">
+                    <div class="blog-card-meta">
+                        <span>🗓️ 25 Jul 2026</span>
+                        <span>⏱️ 3 min</span>
+                    </div>
+                    <h3>PS5 Slim vs PS5 original: ¿Cuál comprar hoy?</h3>
+                    <p>La versión Slim es más pequeña, más barata y con lector de disco separable. Te ayudamos a decidir
+                        qué modelo se adapta mejor a tu presupuesto y espacio.</p>
+                    <div class="blog-card-footer">
+                        <span class="blog-card-author">👤 Guía de Compra</span>
+                        <a href="javascript:void(0)" onclick="abrirNoticia('ps5slim')" class="blog-card-link">Leer más
+                            →</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- NEWSLETTER -->
+        <div class="blog-newsletter">
+            <h3>📬 Mantente al día con lo más gamer</h3>
+            <p>Suscríbete y recibe las noticias, lanzamientos y ofertas exclusivas de La Taverna directo en tu correo.
+            </p>
+            <div class="newsletter-form">
+                <input type="email" id="newsletterEmail" placeholder="tucorreo@ejemplo.com">
+                <button onclick="suscribirse()">Suscribirme</button>
+            </div>
+            <p class="newsletter-ok" id="newsletterOk">✅ ¡Suscripción exitosa! Gracias por unirte.</p>
+        </div>
+
+        <!-- MODAL LECTURA NOTICIA -->
+        <div class="modal-noticia-overlay" id="modalNoticia" onclick="cerrarNoticia(event)">
+            <div class="modal-noticia-contenedor" onclick="event.stopPropagation()">
+                <button class="modal-noticia-cerrar" onclick="cerrarNoticiaDirecto()">✕</button>
+                <div class="modal-noticia-header">
+                    <span class="modal-noticia-cat" id="noticiaCat">Juegos</span>
+                    <h2 id="noticiaTitulo">Título de la noticia</h2>
+                    <div class="modal-noticia-meta">
+                        <span id="noticiaFecha">🗓️ 10 Sep 2026</span>
+                        <span id="noticiaTiempo">⏱️ 6 min</span>
+                        <span id="noticiaAutor">👤 Redacción LT</span>
+                    </div>
+                </div>
+                <div class="modal-noticia-img-wrap">
+                    <img id="noticiaImg" src="" alt="Noticia">
+                </div>
+                <div class="modal-noticia-cuerpo" id="noticiaCuerpo">
+                    <!-- Contenido dinámico -->
+                </div>
+                <div class="modal-noticia-footer">
+                    <button class="btn-cerrar-modal" onclick="cerrarNoticiaDirecto()">Cerrar Noticia</button>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="pie-pagina">
+        <p>
+            <strong>Servicio Técnico:</strong>
+            Lunes a Viernes 09:00 – 21:00 | Sábado 10:00 – 15:00
+            &nbsp;|&nbsp;
+            <strong>Contacto:</strong>
+            <a href="mailto:latavernast@contacto.com" style="color:#e879f9;">latavernast@contacto.com</a>
+        </p>
+    </footer>
+
+    <script>
+        function filtrarBlog(categoria, btn) {
+            document.querySelectorAll(".blog-filtro-btn").forEach(b => b.classList.remove("activo"));
+            btn.classList.add("activo");
+
+            const cards = document.querySelectorAll(".blog-card, .blog-featured");
+            cards.forEach(card => {
+                const cat = card.getAttribute("data-cat") || "";
+                if (categoria === "todos" || cat === categoria) {
+                    card.style.display = "";
+                } else {
+                    card.style.display = "none";
+                }
+            });
+        }
+
+        function suscribirse() {
+            const email = document.getElementById("newsletterEmail").value.trim();
+            if (!email || !email.includes("@")) {
+                alert("Por favor ingresa un correo válido.");
+                return;
+            }
+            document.getElementById("newsletterEmail").style.display = "none";
+            document.querySelector(".newsletter-form button").style.display = "none";
+            document.getElementById("newsletterOk").style.display = "block";
+        }
+
+        /* ============================================
+           LÓGICA Y BASE DE DATOS DE NOTICIAS
+        ============================================ */
+        const noticiasDB = {
+            "gta6": {
+                cat: "🎮 Juegos",
+                titulo: "GTA VI: Todo lo que debes saber antes del lanzamiento definitivo",
+                fecha: "🗓️ 10 Sep 2026",
+                tiempo: "⏱️ 6 min de lectura",
+                autor: "👤 Redacción LT",
+                img: "images/jasonylucia.jpg",
+                cuerpo: `
+            <p>Rockstar Games ha confirmado oficialmente que <strong>Grand Theft Auto VI</strong> llegará a finales de 2026. Esta entrega revolucionará el género del mundo abierto ofreciendo una libertad sin precedentes, gráficos impulsados por físicas de agua y colisiones de nueva generación, e inteligencia artificial hiperrealista.</p>
+            <h4>Leonida: El Mapa más Grande en la Historia de Rockstar</h4>
+            <p>Ubicado en el estado de Leonida (basado en Florida), la ciudad principal de Vice City estará conectada con zonas rurales, pantanos habitados por fauna salvaje y áreas costeras repletas de actividades. Más del 70% de los edificios tendrán interiores navegables.</p>
+            <blockquote>"Buscamos que Vice City se sienta como una ciudad viva las 24 horas, donde las acciones de Jason y Lucía resuenen en las noticias locales y en las redes sociales del juego." — Sam Houser</blockquote>
+            <h4>Jason & Lucía: Dinámica de Pareja Criminal</h4>
+            <p>Por primera vez contaremos con dos protagonistas jugables con mecánicas de cooperación en tiempo real durante asaltos, persecuciones policiales y misiones de infiltración.</p>
+            <p><strong>¿Quieres asegurar tu copia física desde el primer día?</strong> Puedes realizar la reserva de tu copia para PS5 y Xbox Series X en la sección de juegos de <em>La Taverna</em>.</p>
+        `
+            },
+            "fc27": {
+                cat: "🎮 Juegos",
+                titulo: "FC 27: El fútbol virtual nunca fue tan real",
+                fecha: "🗓️ 5 Sep 2026",
+                tiempo: "⏱️ 4 min de lectura",
+                autor: "👤 Redacción LT",
+                img: "images/juegos/fc27-ps5-0.webp",
+                cuerpo: `
+            <p>EA Sports presenta <strong>FC 27</strong>, la evolución más ambiciosa del simulador de fútbol. El nuevo motor gráfico incorpora tecnología HyperMotion V3 para capturar movimientos directos de partidos oficiales de la UEFA Champions League.</p>
+            <h4>Modo Carrera e Inteligencia Táctica</h4>
+            <p>El Modo Carrera de Director Técnico estrena simulaciones cinemáticas de vestuario, conferencias de prensa impulsadas por IA y desarrollo personalizado de juveniles.</p>
+            <p>Reserva ya <strong>FC 27</strong> en <em>La Taverna</em> y obtén items exclusivos de Ultimate Team.</p>
+        `
+            },
+            "bf6": {
+                cat: "🎮 Juegos",
+                titulo: "Battlefield 6: ¿Por fin de vuelta a su mejor forma?",
+                fecha: "🗓️ 2 Sep 2026",
+                tiempo: "⏱️ 5 min de lectura",
+                autor: "👤 Gamer Review",
+                img: "images/juegos/battlefield-6-ps5.webp",
+                cuerpo: `
+            <p>DICE regresa a las raíces de la saga en <strong>Battlefield 6</strong>, enfocándose en combates bélicos modernos a gran escala con el motor Frostbite de última generación. La promesa es clara: redención total tras el polémico BF 2042.</p>
+            <h4>Retorno de Clases Tradicionales</h4>
+            <p>Se eliminan los especialistas para dar la bienvenida al clásico sistema de cuatro clases: Asalto, Médico, Ingeniero y Reconocimiento, promoviendo el juego en equipo coordinado. Cada clase tiene habilidades únicas y gadgets que se complementan entre sí.</p>
+            <h4>Mapas Destruibles y Nueva Generación</h4>
+            <p>Los entornos son 100% destructibles en tiempo real: puentes que colapsan, edificios que se derrumban progresivamente y terrenos que cambian con el transcurso de la batalla. Los mapas incluyen escenarios en Europa del Este, Oriente Medio y Asia Pacífico.</p>
+            <blockquote>"Battlefield 6 es nuestro juego más ambicioso. Queremos que cada partida sea una historia única que los jugadores cuenten a sus amigos." — El equipo de DICE</blockquote>
+            <h4>Modo Campaña Épico</h4>
+            <p>Por primera vez desde BF4, la campaña individual tiene un peso narrativo real. Seguimos a un pelotón multinacional en una guerra de tercera potencia que amenaza desestabilizar el orden mundial. Actuación en captura de movimiento, cinemáticas de primer nivel.</p>
+            <p>Reserva <strong>Battlefield 6</strong> en <em>La Taverna</em> y accede al acceso anticipado de 72 horas con pack de skins exclusivo.</p>
+        `
+            },
+            "switch2": {
+                cat: "🕹️ Consolas",
+                titulo: "Nintendo Switch 2: Análisis completo tras el primer mes",
+                fecha: "🗓️ 28 Ago 2026",
+                tiempo: "⏱️ 4 min de lectura",
+                autor: "👤 Redacción LT",
+                img: "images/consolas/nintendoswitch2.png",
+                cuerpo: `
+            <p>Cumplido el primer mes en el mercado, la <strong>Nintendo Switch 2</strong> ha demostrado ser la consola híbrida perfecta. El salto de potencia a resolución 4K reescalada mediante DLSS 3.5 en modo TV marca una diferencia rotunda.</p>
+            <h4>Pantalla OLED 1080p y Retrocompatibilidad</h4>
+            <p>La nueva pantalla de 8 pulgadas a 120Hz brinda una fluidez inigualable. Además, todos tus juegos comprados en Switch 1 funcionan al instante sin costo adicional.</p>
+        `
+            },
+            "rtx5090": {
+                cat: "🖥️ Accesorios",
+                titulo: "RTX 5090: La GPU más brutal del mercado llega a La Taverna",
+                fecha: "🗓️ 22 Ago 2026",
+                tiempo: "⏱️ 7 min de lectura",
+                autor: "👤 Hardware Team",
+                img: "images/accesorios/Rtx5090.webp",
+                cuerpo: `
+            <p>La bestia de Nvidia ya aterrizó en nuestras bodegas. La <strong>GeForce RTX 5090</strong> cuenta con 32GB GDDR7 y arquitectura Blackwell, entregando más de 180 FPS a 4K nativo en los juegos más exigentes.</p>
+            <h4>Construye tu Setup Supremo</h4>
+            <p>Visita nuestra sección de PC Gamers y Accesorios para cotizar tu armado completo con refrigeración líquida y fuente certificada 80+ Gold.</p>
+        `
+            },
+            "requiem": {
+                cat: "🎮 Juegos",
+                titulo: "Resident Evil Requiem: El horror que no te dejará dormir",
+                fecha: "🗓️ 15 Ago 2026",
+                tiempo: "⏱️ 5 min de lectura",
+                autor: "👤 Terror Gamer",
+                img: "images/juegos/resident-evil-requiem-ps5.webp",
+                cuerpo: `
+            <p>Capcom ofrece una experiencia verdaderamente espeluznante en <strong>Resident Evil Requiem</strong>. El motor RE Engine alcanza su punto más alto con gráficos ultrarrealistas: sombras dinámicas de raytracing, efectos de partículas de sangre y una iluminación volumétrica que convierte cada pasillo en una pesadilla vívida.</p>
+            <h4>Regreso a los Orígenes del Survival Horror</h4>
+            <p>Requiem abandona el enfoque más de acción de las últimas entregas para volver a la tensión psicológica pura. Los recursos son escasos, los enemigos aprenden de tus patrones y el inventario limitado obliga a pensar cada decisión con cuidado.</p>
+            <h4>Una Nueva Protagonista: Elena Voss</h4>
+            <p>Seguimos a Elena, una investigadora del BSAA atrapada en un complejo subterráneo bajo los Alpes europeos. Su historia entrelaza secretos de Umbrella Corporation que conectan con los eventos de RE7 y RE8. Los fans del lore de la saga están de fiesta.</p>
+            <blockquote>"Queremos que los jugadores sientan que no tienen escapatoria. Cada sonido importa, cada sombra puede ser la última que veas." — Naoki Sugiyama, Director</blockquote>
+            <h4>Puzzles y Exploración</h4>
+            <p>Los puzzles ambientales han regresado con fuerza: mecanismos de válvulas, cifrados en documentos dispersos y trampas que el propio jugador puede reactivar contra los enemigos. La exploración se premia con munición extra y armas escondidas.</p>
+            <p>¿Te atreves? Reserva <strong>Resident Evil Requiem</strong> en <em>La Taverna</em> para PS5 y Xbox Series X antes de que se agoten las ediciones de coleccionista con figura de Elena.</p>
+        `
+            },
+            "setup": {
+                cat: "💡 Setup",
+                titulo: "5 accesorios gaming que transformarán tu setup en 2026",
+                fecha: "🗓️ 10 Ago 2026",
+                tiempo: "⏱️ 5 min de lectura",
+                autor: "👤 Setup Tips",
+                img: "images/accesorios/teclado1.webp",
+                cuerpo: `
+            <p>Un buen espacio de trabajo y juego marca la diferencia en tu salud y tu nivel competitivo. Descubre en este artículo los periféricos imprescindibles disponibles en <em>La Taverna</em>:</p>
+            <ul>
+                <li>Teclados mecánicos con switches magnéticos Rapid Trigger</li>
+                <li>Mousepads gamer XL impermeables con bordes RGB</li>
+                <li>Sillas ergonómicas con inclinación reclinable 180°</li>
+                <li>Auriculares surround 7.1 con cancelación activa de ruido</li>
+            </ul>
+        `
+            },
+            "cyberpunk": {
+                cat: "💬 Opinión",
+                titulo: "¿Por qué Cyberpunk 2077 sigue siendo relevante en 2026?",
+                fecha: "🗓️ 5 Ago 2026",
+                tiempo: "⏱️ 6 min de lectura",
+                autor: "👤 Columna LT",
+                img: "images/juegos/cyberpunk-2077-ps5.webp",
+                cuerpo: `
+            <p><strong>Cyberpunk 2077</strong> es uno de los casos más fascinantes de la historia reciente de los videojuegos: lanzado en caos total en 2020, hoy se alza como uno de los mejores RPGs de la generación. ¿Qué ocurrió y por qué sigue siendo relevante en 2026?</p>
+            <h4>La Redención Total</h4>
+            <p>Tras años de parches y actualizaciones masivas, CD Projekt RED entregó lo prometido. La actualización 2.0, la expansión Phantom Liberty y el constante soporte de mods de la comunidad transformaron un lanzamiento fallido en una obra maestra. Hoy en PC con RTX 4080 o superior, Night City es visualmente la ciudad más impresionante jamás renderizada en tiempo real.</p>
+            <blockquote>"Night City es un personaje más. Tiene su propio ritmo, sus propios secretos, su propia podredumbre hermosa." — Pawel Sasko, Quest Director</blockquote>
+            <h4>Por Qué Seguimos Jugándolo</h4>
+            <p>El sistema de habilidades Relic Skills, las builds de netrunner y los múltiples finales ofrecen una rejugabilidad enorme. La comunidad modder sigue lanzando contenido nuevo: vehículos, misiones, mejoras visuales y hasta modos multijugador no oficiales.</p>
+            <h4>¿Vale la Pena en 2026?</h4>
+            <p>Absolutamente. Si tienes una RTX 5090 (disponible en <em>La Taverna</em>), la experiencia en 4K con Path Tracing completo es de otro mundo. Y si buscas una entrada accesible, hoy puedes conseguirlo a precio reducido en nuestra tienda digital.</p>
+            <p>Cyberpunk 2077 es la prueba de que un juego puede superar sus errores. Una historia de perseverancia que la industria no olvidará.</p>
+        `
+            },
+            "gow": {
+                cat: "🎮 Juegos",
+                titulo: "God of War Ragnarok: Por qué es el mejor juego de PS5",
+                fecha: "🗓️ 1 Ago 2026",
+                tiempo: "⏱️ 4 min de lectura",
+                autor: "👤 Redacción LT",
+                img: "images/juegos/god-of-war-ragnarok-ps5.webp",
+                cuerpo: `
+            <p><strong>God of War Ragnarok</strong> es, sin discusión, el pináculo del diseño de videojuegos en PlayStation 5. Kratos y Atreus regresan en una aventura épica que recorre los Nueve Reinos de la mitología nórdica, con una narrativa que rivaliza con las mejores producciones de Hollywood.</p>
+            <h4>Una Historia que te Rompe el Corazón</h4>
+            <p>La relación entre padre e hijo es el núcleo emocional del juego. Kratos aprende a mostrar vulnerabilidad mientras Atreus busca su identidad como Loki. Los momentos de quietud entre batallas son tan poderosos como los combates más espectaculares. Especialmente la escena con Brok — los fans saben.</p>
+            <blockquote>"Ragnarok no es solo un videojuego. Es una historia sobre el perdón, la familia y el peso del destino." — Cory Barlog, Santa Monica Studio</blockquote>
+            <h4>Combate y Exploración de Clase Mundial</h4>
+            <p>El Hacha Leviatán y las Espadas del Caos tienen más profundidad táctica que nunca. Con la Cleave de Draupnir y los poderes Runa, las combinaciones son casi infinitas. Cada reino tiene su identidad visual y sus mecánicas propias.</p>
+            <h4>Dos Años Después: ¿Sigue siendo Imprescindible?</h4>
+            <p>Totalmente. Ragnarok tiene 35-50 horas de contenido si juegas en modo completista. Las nuevas partidas con la expansión Valhalla — gratuita — añaden un roguelite adictivo que extiende la experiencia. Si tienes PS5 y aún no lo has jugado, es un pecado gaming imperdonable.</p>
+            <p>Encuéntralo disponible en <em>La Taverna</em> en formato físico y digital. También disponible en bundle con PS5 Slim.</p>
+        `
+            },
+            "ps5slim": {
+                cat: "🕹️ Consolas",
+                titulo: "PS5 Slim vs PS5 original: ¿Cuál comprar hoy?",
+                fecha: "🗓️ 25 Jul 2026",
+                tiempo: "⏱️ 3 min de lectura",
+                autor: "👤 Guía de Compra",
+                img: "images/consolas/ps5slim.png",
+                cuerpo: `
+            <p>Sony lanzó la <strong>PlayStation 5 Slim</strong> como una revisión más compacta y asequible de su consola insignia. Pero, ¿realmente vale la pena cambiar o comprar la Slim sobre la original? Aquí la comparativa completa.</p>
+            <h4>Diseño y Tamaño</h4>
+            <p>La PS5 Slim es un 30% más pequeña y un 18% más liviana que la original. Encaja perfectamente en muebles de TV sin ocupar tanto espacio. La estética se mantiene fiel al diseño futurista bicolor de Sony, aunque con bordes más redondeados.</p>
+            <h4>Rendimiento: ¿Hay Diferencia?</h4>
+            <p>En términos de rendimiento, ambas consolas son prácticamente idénticas. El mismo procesador AMD Zen 2, la misma GPU RDNA 2 y los mismos 16GB de RAM. Donde sí hay diferencia es en el consumo energético: la Slim usa hasta un 20% menos de electricidad gracias al proceso de fabricación más refinado.</p>
+            <blockquote>La PS5 Slim es la versión que Sony siempre quiso lanzar desde el principio — compacta, eficiente y sin compromisos de rendimiento.</blockquote>
+            <h4>Lector de Disco Separable: ¿Genio o Locura?</h4>
+            <p>El lector de Blu-ray ahora es un accesorio separable que se conecta mediante USB-C. Esto permite comprar la versión digital (más barata) y agregar el lector después si cambias de opinión. Una decisión inteligente para quienes dudan entre físico y digital.</p>
+            <h4>¿Cuál Comprar Hoy?</h4>
+            <p>Si ya tienes PS5 original: no hay urgencia de cambiar. Si vas a comprar tu primera PS5: la Slim es la mejor opción relación precio-tamaño. Ambos modelos están disponibles en <em>La Taverna</em> con garantía de fábrica y financiamiento disponible.</p>
+        `
+            }
+        };
+
+        function abrirNoticia(id) {
+            const data = noticiasDB[id];
+            if (!data) return;
+
+            document.getElementById("noticiaCat").innerText = data.cat;
+            document.getElementById("noticiaTitulo").innerText = data.titulo;
+            document.getElementById("noticiaFecha").innerText = data.fecha;
+            document.getElementById("noticiaTiempo").innerText = data.tiempo;
+            document.getElementById("noticiaAutor").innerText = data.autor;
+            document.getElementById("noticiaImg").src = data.img;
+            document.getElementById("noticiaCuerpo").innerHTML = data.cuerpo;
+
+            document.getElementById("modalNoticia").classList.add("activo");
+            document.body.style.overflow = "hidden";
+        }
+
+        function cerrarNoticia(event) {
+            if (event.target.classList.contains("modal-noticia-overlay")) {
+                cerrarNoticiaDirecto();
+            }
+        }
+
+        function cerrarNoticiaDirecto() {
+            document.getElementById("modalNoticia").classList.remove("activo");
+            document.body.style.overflow = "";
+        }
+    </script>
+
+    <script src="producto-links.js"></script>
+
+    <script src="admin.js"></script>
+
+</body>
+
+</html>

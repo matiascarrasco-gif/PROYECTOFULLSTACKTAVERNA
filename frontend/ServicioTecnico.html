@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Servicio Técnico | La Taverna</title>
+    <link rel="stylesheet" href="estilos.css">
+    <style>
+        /* ---- Servicio Técnico Custom Styles ---- */
+        .st-hero {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            border-radius: 14px;
+            padding: 50px 40px;
+            text-align: center;
+            color: white;
+            margin-bottom: 28px;
+            position: relative;
+            overflow: hidden;
+        }
+        .st-hero::before {
+            content: "";
+            position: absolute;
+            top: -60px; right: -60px;
+            width: 220px; height: 220px;
+            border-radius: 50%;
+            background: rgba(192, 38, 211, 0.18);
+        }
+        .st-hero::after {
+            content: "";
+            position: absolute;
+            bottom: -40px; left: -40px;
+            width: 160px; height: 160px;
+            border-radius: 50%;
+            background: rgba(147, 51, 234, 0.15);
+        }
+        .st-hero h2 {
+            font-size: 2.2rem;
+            margin: 0 0 12px;
+            color: white !important;
+            border: none !important;
+        }
+        .st-hero p {
+            font-size: 1.1rem;
+            color: rgba(255,255,255,0.8);
+            max-width: 580px;
+            margin: 0 auto;
+        }
+        .st-hero .hero-icon {
+            font-size: 3.5rem;
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        /* Info cards */
+        .st-info-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+            margin-bottom: 28px;
+        }
+        .st-info-card {
+            background: white;
+            border-radius: 14px;
+            padding: 28px 22px;
+            text-align: center;
+            box-shadow: 0 4px 18px rgba(0,0,0,0.08);
+            border-top: 4px solid transparent;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+        .st-info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 28px rgba(192,38,211,0.15);
+        }
+        .st-info-card.purple { border-top-color: #c026d3; }
+        .st-info-card.pink   { border-top-color: #db2777; }
+        .st-info-card.blue   { border-top-color: #3b82f6; }
+        .st-info-card .card-icon {
+            font-size: 2.4rem;
+            margin-bottom: 12px;
+            display: block;
+        }
+        .st-info-card h3 {
+            font-size: 1.05rem;
+            color: #222;
+            margin: 0 0 8px;
+        }
+        .st-info-card p, .st-info-card a {
+            color: #555;
+            font-size: 0.95rem;
+            margin: 0;
+            text-decoration: none;
+        }
+        .st-info-card a:hover { color: #c026d3; }
+
+        /* Services grid */
+        .st-services-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            margin-top: 20px;
+        }
+        .st-service-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            background: #fafafa;
+            border-radius: 10px;
+            padding: 18px;
+            border-left: 4px solid #c026d3;
+            transition: background 0.2s ease;
+        }
+        .st-service-item:hover { background: #fdf4ff; }
+        .st-service-item .svc-icon {
+            font-size: 1.8rem;
+            flex-shrink: 0;
+        }
+        .st-service-item h4 {
+            margin: 0 0 4px;
+            color: #222;
+            font-size: 1rem;
+        }
+        .st-service-item p {
+            margin: 0;
+            color: #666;
+            font-size: 0.88rem;
+            line-height: 1.4;
+        }
+
+        /* Schedule table */
+        .st-schedule {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 16px;
+            font-size: 0.95rem;
+        }
+        .st-schedule th {
+            background: linear-gradient(135deg, #db2777, #9333ea);
+            color: white;
+            padding: 12px 18px;
+            text-align: left;
+        }
+        .st-schedule th:first-child { border-radius: 8px 0 0 0; }
+        .st-schedule th:last-child { border-radius: 0 8px 0 0; }
+        .st-schedule td {
+            padding: 11px 18px;
+            border-bottom: 1px solid #f0f0f0;
+            color: #444;
+        }
+        .st-schedule tr:last-child td { border-bottom: none; }
+        .st-schedule tr:nth-child(even) td { background: #fafafa; }
+        .st-schedule .disponible {
+            display: inline-block;
+            background: #dcfce7;
+            color: #16a34a;
+            font-weight: bold;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 0.82rem;
+        }
+        .st-schedule .cerrado {
+            display: inline-block;
+            background: #fee2e2;
+            color: #dc2626;
+            font-weight: bold;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 0.82rem;
+        }
+
+        /* Contact form */
+        .st-form {
+            margin-top: 20px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+        .st-form .full-width { grid-column: 1 / -1; }
+        .st-form label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            color: #333;
+        }
+        .st-form input,
+        .st-form select,
+        .st-form textarea {
+            width: 100%;
+            padding: 11px 14px;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            color: #333;
+            background: white;
+            box-sizing: border-box;
+            transition: border-color 0.2s ease;
+            font-family: inherit;
+        }
+        .st-form input:focus,
+        .st-form select:focus,
+        .st-form textarea:focus {
+            outline: none;
+            border-color: #c026d3;
+        }
+        .st-form textarea { resize: vertical; min-height: 110px; }
+        .st-form-btn {
+            display: inline-block;
+            padding: 13px 32px;
+            background: linear-gradient(135deg, #db2777, #9333ea);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            box-shadow: 0 4px 14px rgba(219,39,119,0.35);
+        }
+        .st-form-btn:hover {
+            background: linear-gradient(135deg, #be185d, #7e22ce);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(147,51,234,0.45);
+        }
+        .form-success-msg {
+            display: none;
+            background: #dcfce7;
+            color: #16a34a;
+            padding: 14px 20px;
+            border-radius: 8px;
+            font-weight: bold;
+            margin-top: 14px;
+            text-align: center;
+        }
+
+        /* FAQ */
+        .faq-item {
+            border: 1px solid #ebe5f0;
+            border-radius: 10px;
+            margin-bottom: 12px;
+            overflow: hidden;
+        }
+        .faq-question {
+            width: 100%;
+            background: #fafafa;
+            border: none;
+            padding: 16px 20px;
+            text-align: left;
+            font-size: 0.97rem;
+            font-weight: bold;
+            color: #222;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.2s;
+        }
+        .faq-question:hover { background: #fdf4ff; }
+        .faq-question .faq-arrow {
+            color: #c026d3;
+            font-size: 1.1rem;
+            transition: transform 0.3s ease;
+        }
+        .faq-question.active .faq-arrow { transform: rotate(180deg); }
+        .faq-answer {
+            display: none;
+            padding: 14px 20px;
+            color: #555;
+            font-size: 0.93rem;
+            line-height: 1.6;
+            background: white;
+            border-top: 1px solid #f0e8f5;
+        }
+
+        @media (max-width: 700px) {
+            .st-info-grid { grid-template-columns: 1fr; }
+            .st-services-grid { grid-template-columns: 1fr; }
+            .st-form { grid-template-columns: 1fr; }
+            .st-form .full-width { grid-column: 1; }
+            .st-hero { padding: 34px 20px; }
+            .st-hero h2 { font-size: 1.6rem; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>
+        <a href="Index.html">
+            <img src="images/logosinfondo.png" alt="La Taverna" class="logo-titulo">
+        </a>
+    </h1>
+
+    <nav class="menu-principal">
+        <a href="Juegos.html">Juegos Digitales</a>
+        <a href="Consolas.html">Consolas</a>
+        <a href="PcGamers.html">PC Gamers</a>
+        <a href="Mouse-Mousepad.html">Mouse / Mousepad</a>
+        <a href="SillasGamers.html">Sillas Gamers</a>
+        <a href="Accesorios.html">Accesorios</a>
+        <a href="Poleras.html">Poleras Personalizadas</a>
+        <a href="Poleron.html">Polerones Gamers Personalizados</a>
+        <a href="Blog.html">Blog</a>
+        <a href="ServicioTecnico.html">Servicio Tecnico</a>
+    </nav>
+</header>
+
+<main class="contenedor">
+
+    <!-- HERO -->
+    <div class="st-hero">
+        <span class="hero-icon">🔧</span>
+        <h2>Servicio Técnico Especializado</h2>
+        <p>Reparamos y mantenemos tu equipo gamer como nuevo. Profesionales con experiencia en hardware, software y consolas.</p>
+    </div>
+
+    <!-- INFO CARDS -->
+    <div class="st-info-grid">
+        <div class="st-info-card purple">
+            <span class="card-icon">📧</span>
+            <h3>Correo de Contacto</h3>
+            <p><a href="mailto:latavernast@contacto.com">latavernast@contacto.com</a></p>
+            <p style="margin-top:6px; font-size:0.82rem; color:#999;">Respondemos en menos de 24 hrs</p>
+        </div>
+        <div class="st-info-card pink">
+            <span class="card-icon">🕘</span>
+            <h3>Horario de Atención</h3>
+            <p>Lunes a Viernes</p>
+            <p><strong>09:00 am – 21:00 pm</strong></p>
+        </div>
+        <div class="st-info-card blue">
+            <span class="card-icon">📍</span>
+            <h3>Ubícanos</h3>
+            <p>Santiago, Chile</p>
+            <p style="margin-top:4px;"><a href="mailto:latavernast@contacto.com">Solicita dirección por correo</a></p>
+        </div>
+    </div>
+
+    <!-- SERVICIOS -->
+    <section class="tarjeta">
+        <h2>Nuestros Servicios</h2>
+        <p style="color:#555; margin-top:-4px;">Todo lo que necesita tu equipo para rendir al máximo.</p>
+
+        <div class="st-services-grid">
+            <div class="st-service-item">
+                <span class="svc-icon">💻</span>
+                <div>
+                    <h4>Diagnóstico de PC Gamer</h4>
+                    <p>Revisión completa de hardware y software para detectar fallas y cuellos de botella en tu setup.</p>
+                </div>
+            </div>
+            <div class="st-service-item">
+                <span class="svc-icon">🎮</span>
+                <div>
+                    <h4>Reparación de Consolas</h4>
+                    <p>PS5, PS4, Xbox, Nintendo Switch: lentes, HDMI, joystick drift y más.</p>
+                </div>
+            </div>
+            <div class="st-service-item">
+                <span class="svc-icon">🧹</span>
+                <div>
+                    <h4>Limpieza Interna Profunda</h4>
+                    <p>Limpieza de polvo, cambio de pasta térmica y revisión de ventilación para evitar sobrecalentamiento.</p>
+                </div>
+            </div>
+            <div class="st-service-item">
+                <span class="svc-icon">⚡</span>
+                <div>
+                    <h4>Optimización y Aceleración</h4>
+                    <p>Instalamos SSD, ampliamos RAM y optimizamos Windows para que tu PC vuele en los juegos.</p>
+                </div>
+            </div>
+            <div class="st-service-item">
+                <span class="svc-icon">🖥️</span>
+                <div>
+                    <h4>Armado de PC Gamer</h4>
+                    <p>Te ayudamos a armar tu PC gamer desde cero: elegimos las piezas, la ensamblamos y configuramos.</p>
+                </div>
+            </div>
+            <div class="st-service-item">
+                <span class="svc-icon">🛡️</span>
+                <div>
+                    <h4>Instalación de Software</h4>
+                    <p>Instalación de Windows, drivers, antivirus y programas esenciales para gaming.</p>
+                </div>
+            </div>
+            <div class="st-service-item">
+                <span class="svc-icon">🔌</span>
+                <div>
+                    <h4>Reparación de Periféricos</h4>
+                    <p>Arreglamos mouse, teclados, auriculares y otros periféricos con fallas eléctricas o mecánicas.</p>
+                </div>
+            </div>
+            <div class="st-service-item">
+                <span class="svc-icon">📡</span>
+                <div>
+                    <h4>Configuración de Red y Wi-Fi</h4>
+                    <p>Optimizamos tu conexión para gaming online: reducción de latencia, configuración de router y más.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- HORARIOS -->
+    <section class="tarjeta">
+        <h2>Horarios de Atención</h2>
+        <table class="st-schedule">
+            <thead>
+                <tr>
+                    <th>Día</th>
+                    <th>Horario</th>
+                    <th>Estado</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Lunes – Viernes</strong></td>
+                    <td>09:00 am – 21:00 pm</td>
+                    <td><span class="disponible">✔ Disponible</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Sábado</strong></td>
+                    <td>10:00 am – 15:00 pm</td>
+                    <td><span class="disponible">✔ Disponible</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Domingo</strong></td>
+                    <td>—</td>
+                    <td><span class="cerrado">✖ Cerrado</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Festivos</strong></td>
+                    <td>—</td>
+                    <td><span class="cerrado">✖ Cerrado</span></td>
+                </tr>
+            </tbody>
+        </table>
+        <p style="color:#888; font-size:0.85rem; margin-top:12px;">* Para urgencias fuera de horario, puedes escribir al correo y te responderemos a la brevedad.</p>
+    </section>
+
+    <!-- FORMULARIO DE CONTACTO -->
+    <section class="tarjeta">
+        <h2>Solicita tu Servicio Técnico</h2>
+        <p style="color:#555; margin-top:-4px;">Completa el formulario y nos contactaremos contigo a la brevedad.</p>
+
+        <form class="st-form" id="formServicio" onsubmit="enviarFormulario(event)">
+            <div>
+                <label for="nombre">Nombre completo *</label>
+                <input type="text" id="nombre" placeholder="Ej: Juan Pérez" required>
+            </div>
+            <div>
+                <label for="correo">Correo electrónico *</label>
+                <input type="email" id="correo" placeholder="tucorreo@ejemplo.com" required>
+            </div>
+            <div>
+                <label for="telefono">Teléfono / WhatsApp</label>
+                <input type="tel" id="telefono" placeholder="+56 9 1234 5678">
+            </div>
+            <div>
+                <label for="servicio">Tipo de servicio *</label>
+                <select id="servicio" required>
+                    <option value="">-- Selecciona un servicio --</option>
+                    <option>Diagnóstico de PC Gamer</option>
+                    <option>Reparación de Consola</option>
+                    <option>Limpieza Interna Profunda</option>
+                    <option>Optimización y Aceleración</option>
+                    <option>Armado de PC Gamer</option>
+                    <option>Instalación de Software</option>
+                    <option>Reparación de Periféricos</option>
+                    <option>Configuración de Red</option>
+                    <option>Otro</option>
+                </select>
+            </div>
+            <div class="full-width">
+                <label for="descripcion">Descripción del problema *</label>
+                <textarea id="descripcion" placeholder="Cuéntanos qué le pasa a tu equipo con el mayor detalle posible..." required></textarea>
+            </div>
+            <div class="full-width" style="text-align:center;">
+                <button type="submit" class="st-form-btn">📨 Enviar Solicitud</button>
+            </div>
+        </form>
+        <div class="form-success-msg" id="mensajeExito">
+            ✅ ¡Solicitud enviada con éxito! Te contactaremos pronto a tu correo.
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="tarjeta">
+        <h2>Preguntas Frecuentes</h2>
+
+        <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+                ¿Cuánto demora una reparación típica?
+                <span class="faq-arrow">▼</span>
+            </button>
+            <div class="faq-answer">
+                Depende del tipo de servicio. Un diagnóstico básico tarda entre 1 y 2 días hábiles. Una reparación de consola puede tomar entre 3 y 7 días según la disponibilidad de repuestos. Siempre te avisamos por correo sobre el avance.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+                ¿Entregan garantía por los trabajos realizados?
+                <span class="faq-arrow">▼</span>
+            </button>
+            <div class="faq-answer">
+                ¡Sí! Todos nuestros servicios incluyen garantía de 30 días por la reparación realizada. Si el problema reaparece dentro de ese período, lo revisamos sin costo adicional.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+                ¿Puedo llevar mi equipo en persona?
+                <span class="faq-arrow">▼</span>
+            </button>
+            <div class="faq-answer">
+                Sí, atendemos de forma presencial de Lunes a Sábado. Te pedimos que primero nos escribas al correo para coordinar el horario de entrega y evitar esperas innecesarias.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+                ¿Cuáles son los métodos de pago?
+                <span class="faq-arrow">▼</span>
+            </button>
+            <div class="faq-answer">
+                Aceptamos efectivo, transferencia bancaria y pagos por Mercado Pago. El cobro del diagnóstico se abona al retirar el equipo junto con la reparación.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+                ¿Hacen envíos para recibir equipos de otras ciudades?
+                <span class="faq-arrow">▼</span>
+            </button>
+            <div class="faq-answer">
+                Sí, aceptamos equipos enviados por Starken o Chilexpress. El cliente se hace cargo del costo de envío de ida. La devolución del equipo reparado se coordina caso a caso.
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<footer class="pie-pagina">
+    <p>
+        <strong>Servicio Técnico:</strong>
+        Lunes a Viernes 09:00 – 21:00 | Sábado 10:00 – 15:00
+        &nbsp;|&nbsp;
+        <strong>Contacto:</strong>
+        <a href="mailto:latavernast@contacto.com" style="color:#e879f9;">latavernast@contacto.com</a>
+    </p>
+</footer>
+
+<script>
+function toggleFaq(btn) {
+    const answer = btn.nextElementSibling;
+    const isOpen = answer.style.display === "block";
+    // Cerrar todos
+    document.querySelectorAll(".faq-answer").forEach(a => a.style.display = "none");
+    document.querySelectorAll(".faq-question").forEach(b => b.classList.remove("active"));
+    // Abrir el clickeado si estaba cerrado
+    if (!isOpen) {
+        answer.style.display = "block";
+        btn.classList.add("active");
+    }
+}
+
+function enviarFormulario(e) {
+    e.preventDefault();
+    document.getElementById("formServicio").style.display = "none";
+    document.getElementById("mensajeExito").style.display = "block";
+}
+</script>
+
+<script src="producto-links.js"></script>
+
+</body>
+</html>

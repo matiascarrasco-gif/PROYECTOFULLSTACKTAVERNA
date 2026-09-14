@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juegos</title>
+    <link rel="stylesheet" href="estilos.css">
+    <style>
+        .boton-trailer {
+            display: inline-block;
+            margin: 6px 0 10px 0;
+            padding: 6px 14px;
+            background: #ff0000;
+            color: white !important;
+            text-decoration: none !important;
+            border-radius: 6px;
+            font-size: 0.82rem;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+            transition: background 0.2s ease, transform 0.2s ease;
+        }
+        .boton-trailer:hover {
+            background: #cc0000;
+            transform: translateY(-2px);
+            color: white !important;
+        }
+    </style>
+</head>
+
+<body>
+<header>
+    <h1>
+        <a href="Index.html">
+            <img src="images/logosinfondo.png" alt="La Taverna" class="logo-titulo">
+        </a>
+    </h1>
+
+    <nav class="menu-principal">
+        <a href="Juegos.html">Juegos Digitales</a>
+        <a href="Consolas.html">Consolas</a>
+        <a href="PcGamers.html">PC Gamers</a>
+        <a href="Mouse-Mousepad.html">Mouse / Mousepad</a>
+        <a href="SillasGamers.html">Sillas Gamers</a>
+        <a href="Accesorios.html">Accesorios</a>
+        <a href="Poleras.html">Poleras Personalizadas</a>
+        <a href="Poleron.html">Polerones Gamers Personalizados</a>
+        <a href="Blog.html">Blog</a>
+        <a href="ServicioTecnico.html">Servicio Tecnico</a>
+    </nav>
+</header>
+
+<main class="contenedor">
+    <section class="tarjeta juegos-seccion">
+        <h2>Videojuegos Digitales</h2>
+
+        <div class="filtros-juegos">
+            <input type="search" id="buscarJuego" placeholder="Buscar juego...">
+
+            <select id="filtroConsola">
+                <option value="todas">Todas las consolas</option>
+                <option value="ps4">PS4</option>
+                <option value="ps5">PS5</option>
+                <option value="switch">Nintendo Switch</option>
+                <option value="ps3">PS3</option>
+            </select>
+
+            <select id="filtroGenero">
+                <option value="todos">Todos los géneros</option>
+                <option value="accion">Acción</option>
+                <option value="aventura">Aventura</option>
+                <option value="terror">Terror</option>
+                <option value="deportes">Deportes</option>
+            </select>
+        </div>
+
+        <div class="juegos-grid">
+
+            <article class="juego-card" id="gta6"
+                     data-consola="ps5"
+                     data-genero="accion"
+                     data-accion="reservar">
+                <img src="images/juegos/grand-theft-auto-vi-ps5.webp" alt="Grand Theft Auto VI">
+                <span class="juego-consola">PS5</span>
+                <h3>Grand Theft Auto VI</h3>
+                <p>Ambientado en Vice City, GTA VI presenta a Jason y Lucia como protagonistas en el mundo abierto más inmersivo de Rockstar. IA avanzada, física mejorada y economía dinámica en el juego más esperado del siglo.</p>
+                <strong>$96.000</strong>
+                <a href="Compragtavi.html">Reservar ahora</a>
+            </article>
+
+            <article class="juego-card" id="fc27"
+                     data-consola="ps5"
+                     data-genero="deportes"
+                     data-accion="reservar">
+                <img src="images/juegos/fc27-ps5-0.webp" alt="fc27">
+                <span class="juego-consola">PS5</span>
+                <h3>FC 27</h3>
+                <p>EA Sports FC 27 eleva el simulador de fútbol al máximo nivel con tecnología HyperMotion V de nueva generación, físicas de balón perfeccionadas y modo Carrera renovado. Reserva tu copia antes del lanzamiento mundial.</p>
+                <strong>$83.500</strong>
+                <a href="Comprafc27.html">Reservar ahora</a>
+            </article>
+
+            <article class="juego-card"
+                     data-consola="ps4"
+                     data-genero="aventura terror">
+                <img src="images/juegos/tlou.png" alt="The Last of Us Remastered">
+                <span class="juego-consola">PS4</span>
+                <h3>The Last of Us 1 Remastered</h3>
+                <p>La obra maestra de Naughty Dog en PS4 con gráficos HD. Sigue a Joel y Ellie en un mundo post-apocalíptico dominado por un hongo mutante en una historia que redefinió el storytelling en videojuegos.</p>
+                <strong>$9.000</strong>
+                <a href="Compratloups4.html">Comprar ahora</a>
+            </article>
+
+            <article class="juego-card"
+                     data-consola="ps5"
+                     data-genero="accion aventura">
+                <img src="images/juegos/marvels-spider-man-2-ps5.webp" alt="Spider-Man 2">
+                <span class="juego-consola">PS5</span>
+                <h3>Spider-Man 2</h3>
+                <p>Peter Parker y Miles Morales se unen para enfrentar a Kraven el Cazador y Venom. El juego de superhéroes más grande de Insomniac, con Manhattan ampliada y mecánicas de vuelo mejoradas.</p>
+                <strong>$18.990</strong>
+                <a href="Compraspiderman2.html">Comprar ahora</a>
+            </article>
+
+            <article class="juego-card"
+                     data-consola="ps5"
+                     data-genero="accion aventura">
+                <img src="images/juegos/marvel-spider-man-ps5.webp" alt="Marvel's Spiderman 1">
+                <span class="juego-consola">PS5</span>
+                <h3>Marvel's Spiderman 1</h3>
+                <p>Versión remasterizada para PS5 con ray tracing, 4K/60fps y trajes nuevos exclusivos. La aventura de acción y aventura que convirtió a Spider-Man en una referencia del género en PS4.</p>
+                <strong>$24.990</strong>
+                <a href="Compraspiderman1.html">Comprar ahora</a>
+            </article>
+
+            <article class="juego-card"
+                     data-consola="ps4"
+                     data-genero="aventura accion">
+                <img src="images/juegos/minecraft-ps4-0.webp" alt="Minecraft">
+                <span class="juego-consola">PS4</span>
+                <h3>Minecraft</h3>
+                <p>El juego de construcción y supervivencia más popular del mundo. Explora mundos infinitos, recolecta recursos, construye estructuras épicas y enfrenta criaturas nocturnas. Compatible con DLCs y modo multijugador.</p>
+                <strong>$6.000</strong>
+                <a href="Compraminecraft.html">Comprar ahora</a>
+            </article>
+
+            <article class="juego-card"
+                     data-consola="ps4"
+                     data-genero="accion">
+                <img src="images/juegos/mortal-kombat-11-ultimate-ps4.jpg" alt="Mortal Kombat 11">
+                <span class="juego-consola">PS4</span>
+                <h3>Mortal Kombat 11 Ultimate</h3>
+                <p>Edición definitiva de MK11 con todos los DLCs: personajes adicionales, Aftermath y modos extra. Sistema de combate profundo con Fatalities espectaculares y modo historia cinematográfico.</p>
+                <strong>$18.000</strong>
+                <a href="Compramortalkombat11.html">Comprar ahora</a>
+            </article>
+
+            <article class="juego-card"
+                     data-consola="ps5"
+                     data-genero="accion aventura">
+                <img src="images/juegos/red-dead-redemption-2-ps5.webp" alt="RDR2">
+                <span class="juego-consola">PS5</span>
+                <h3>Red Dead Redemption 2</h3>
+                <p>La obra cumbre de Rockstar. Vive la historia de Arthur Morgan en el ocaso del Lejano Oeste. Mundo abierto gigantesco con fauna, clima dinámico y narrativa cinematográfica que deja huella en la industria.</p>
+                <strong>$20.000</strong>
+                <a href="Comprardr2.html">Comprar ahora</a>
+            </article>
+
+            <article class="juego-card"
+                     data-consola="ps4"
+                     data-genero="accion terror">
+                <img src="images/juegos/resident-evil-2-ps4.webp" alt="Resident evil 2">
+                <span class="juego-consola">PS4</span>
+                <h3>Resident Evil 2 Remake</h3>
+                <p>Remake en tercera persona del clásico de survival horror. Controla a Leon S. Kennedy y Claire Redfield en el RCPD infestado de zombis. Terror psicológico, puzzles y gráficos de última generación.</p>
+                <strong>$9.000</strong>
+                <a href="Compraresidentevil2.html">Comprar ahora</a>
+            </article>
+
+            <article class="juego-card"
+                     data-consola="ps5"
+                     data-genero="accion terror">
+                <img src="images/juegos/resident-evil-requiem-ps5.webp" alt="Resident evil Requiem">
+                <span class="juego-consola">PS5</span>
+                <h3>Resident Evil Requiem</h3>
+                <p>La nueva entrega de Capcom lleva el survival horror a nuevos extremos. Protagonista inédito, entornos oscuros y tensos, y sistema de recursos escaso que mantiene la tensión de principio a fin.</p>
+                <strong>$45.000</strong>
+                <a href="Compraresidentevilrequiem.html">Comprar ahora</a>
+            </article>
+
+            <article class="juego-card"
+                     data-consola="ps5"
+                     data-genero="accion">
+                <img src="images/juegos/god-of-war-ragnarok-ps5.webp" alt="God of War Ragnarok">
+                <span class="juego-consola">PS5</span>
+                <h3>God of War Ragnarok</h3>
+                <p>Kratos y Atreus recorren los Nueve Reinos para prevenir el Ragnarok. Combate brutal mejorado, exploración ampliada y una narrativa emotiva sobre paternidad y destino. Premio GOTY 2022.</p>
+                <strong>$16.000</strong>
+                <a href="Compragowragnarok.html">Comprar ahora</a>
+            </article>
+
+            <article class="juego-card"
+                     data-consola="ps5"
+                     data-genero="accion ">
+                <img src="images/juegos/god-of-war-ps5.webp" alt="God of War">
+                <span class="juego-consola">PS5</span>
+                <h3>God of War </h3>
+                <p>Kratos y su hijo Atreus enfrentan dioses nórdicos en un viaje épico por Midgard. Mejorado para PS5 con 4K/60fps nativos, tiempos de carga ultrarrápidos y uso del DualSense.</p>
+                <strong>$10.000</strong>
+                <a href="Compragow.html">Comprar ahora</a>
+            </article>
+
+            <article class="juego-card"
+                     data-consola="ps5"
+                     data-genero="accion ">
+                <img src="images/juegos/dark-souls-remastered-ps5.jpg" alt="Dark Souls Remastered">
+                <span class="juego-consola">PS5</span>
+                <h3>Dark Souls Remastered</h3>
+                <p>Versión remasterizada del mítico juego de FromSoftware. Explora Lordran, mundo interconectado lleno de desafíos implacables y jefes memorables. La dificultad que definió un género entero.</p>
+                <strong>$13.500</strong>
+                <a href="Compradarksoulsr.html">Comprar ahora</a>
+            </article>
+
+            <article class="juego-card"
+                     data-consola="ps5"
+                     data-genero="aventura ">
+                <img src="images/juegos/cyberpunk-2077-ps5.webp" alt="Cyberpunk 2077">
+                <span class="juego-consola">PS5</span>
+                <h3>Cyberpunk 2077</h3>
+                <p>Completamente optimizado para PS5 con ray tracing y 60fps estables. Incluye la expansión Phantom Liberty. Explora Night City en un RPG de rol en primera persona donde cada decisión importa.</p>
+                <strong>$16.000</strong>
+                <a href="Compracyberpunk2077.html">Comprar ahora</a>
+            </article>
+
+            <article class="juego-card"
+                     data-consola="ps5"
+                     data-genero="accion ">
+                <img src="images/juegos/battlefield-6-ps5.webp" alt="Battlefield 6">
+                <span class="juego-consola">PS5</span>
+                <h3>Battlefield 6</h3>
+                <p>La saga regresa a sus raíces con mapas destructibles de gran escala, campaña épica y multijugador masivo de 128 jugadores con vehículos, clases especializadas y física realista.</p>
+                <strong>$11.300</strong>
+                <a href="Comprabattlefield.html">Comprar ahora</a>
+            </article>
+
+            <article class="juego-card"
+                     data-consola="switch"
+                     data-genero="aventura ">
+                <img src="images/juegos/it-takes-two-nintendo-switch.jpg" alt="It Takes Two">
+                <span class="juego-consola">Nintendo Switch</span>
+                <h3>It Takes Two</h3>
+                <p>Juego cooperativo ganador del GOTY 2021. Cody y May deben trabajar juntos para salvar su matrimonio en una aventura de plataformas con mecánicas únicas y originales en cada nivel.</p>
+                <strong>$42.000</strong>
+                <a href="Compraittakestwo.html">Comprar ahora</a>
+            </article>
+
+            <article class="juego-card"
+                     data-consola="switch"
+                     data-genero="aventura ">
+                <img src="images/juegos/kirby-and-the-forgotten-land-nintendo.jpg" alt="Kirby">
+                <span class="juego-consola">Nintendo Switch</span>
+                <h3>Kirby and the Forgotten Land</h3>
+                <p>El primer Kirby completamente en 3D. Explora un mundo postapocalíptico inspirado en la civilización humana, absorbiendo enemigos y copiando sus habilidades. Ideal para toda la familia.</p>
+                <strong>$45.000</strong>
+                <a href="Comprakirby.html">Comprar ahora</a>
+            </article>
+
+            <article class="juego-card"
+                     data-consola="switch"
+                     data-genero="aventura ">
+                <img src="images/juegos/cuphead-nintendo-switch.webp" alt="Cuphead">
+                <span class="juego-consola">Nintendo Switch</span>
+                <h3>CUPHEAD</h3>
+                <p>Shooter de run-and-gun con estética de caricaturas de los años 30, dibujado a mano. Jefes extremadamente desafiantes que requieren paciencia y habilidad. Un homenaje al cine clásico.</p>
+                <strong>$36.000</strong>
+                <a href="Compracuphead.html">Comprar ahora</a>
+            </article>
+
+            <article class="juego-card"
+                     data-consola="switch"
+                     data-genero="accion ">
+                <img src="images/juegos/dragon-ball-z-kakarot.jpg" alt="Dragon ball Z">
+                <span class="juego-consola">Nintendo Switch</span>
+                <h3>DRAGON BALL Z: KAKAROT</h3>
+                <p>RPG de acción que permite vivir los arcos más icónicos del anime. Pelea como Goku y Gohan en batallas épicas con mecánicas RPG profundas y quests secundarias que amplían la historia.</p>
+                <strong>$24.000</strong>
+                <a href="Compradragonballz.html">Comprar ahora</a>
+            </article>
+
+            <article class="juego-card"
+                     data-consola="switch"
+                     data-genero="accion y aventura ">
+                <img src="images/juegos/the-legend-of-zelda-bow-switch-2.webp" alt="Zelda botw">
+                <span class="juego-consola">Nintendo Switch</span>
+                <h3>The Legend Of Zelda Breath Of The Wild</h3>
+                <p>El revolucionario juego de mundo abierto de Nintendo. Link despierta cien años después en Hyrule y debe derrotar a Calamity Ganon con total libertad exploratoria y física interactiva.</p>
+                <strong>$33.800</strong>
+                <a href="Comprazeldabotw.html">Comprar ahora</a>
+            </article>
+
+            <article class="juego-card"
+                     data-consola="switch"
+                     data-genero="aventura ">
+                <img src="images/juegos/mario-kart-8-deluxe.jpg" alt="Mario kart 8">
+                <span class="juego-consola">Nintendo Switch</span>
+                <h3>Mario Kart 8 Deluxe</h3>
+                <p>El juego de carreras más divertido de Nintendo con 48 circuitos, 42 corredores y modo batalla renovado. Incluye todos los DLCs originales. Hasta 12 jugadores en línea y multijugador local.</p>
+                <strong>$30.400</strong>
+                <a href="Compramariokart8.html">Comprar ahora</a>
+            </article>
+
+            <article class="juego-card"
+                     data-consola="ps3"
+                     data-genero="accion ">
+                <img src="images/juegos/mortalkombatps3.jpeg" alt="Mortal Kombat">
+                <span class="juego-consola">PS3</span>
+                <h3>Mortal Kombat Komplete Edition</h3>
+                <p>Edición completa de MK (2011) con todos los DLCs incluidos: personajes adicionales como Freddy Krueger y Kenshi, trajes alternativos y el clásico combate en 2D renovado para PS3.</p>
+                <strong>$3.200</strong>
+                <a href="Compramortalkombat.html">Comprar ahora</a>
+            </article>
+
+            <article class="juego-card"
+                     data-consola="ps3"
+                     data-genero="accion">
+                <img src="images/juegos/call-of-duty-black-ops-iii-ps3.webp" alt="cod black ops 3">
+                <span class="juego-consola">PS3</span>
+                <h3>Call of Duty Black Ops III</h3>
+                <p>Shooter en primera persona con campaña de ciencia ficción en 2065. Soldados con mejoras cibernéticas, modo zombis expandido y multijugador con especialistas únicos.</p>
+                <strong>$3.000</strong>
+                <a href="Compracodblackops3.html">Comprar ahora</a>
+            </article>
+
+            <article class="juego-card"
+                     data-consola="ps3"
+                     data-genero="deportes">
+                <img src="images/juegos/fifa-18-ps3.jpg" alt="fifa 18">
+                <span class="juego-consola">PS3</span>
+                <h3>FIFA 18</h3>
+                <p>Simulador de fútbol de EA Sports con el modo Journey de Alex Hunter, Ultimate Team mejorado y todas las principales ligas del mundo con gráficos realistas en PS3.</p>
+                <strong>$4.000</strong>
+                <a href="Comprafifa18.html">Comprar ahora</a>
+            </article>
+
+            <article class="juego-card"
+                     data-consola="ps3"
+                     data-genero="accion">
+                <img src="images/juegos/god-of-war-ascension.webp" alt="gow ascension">
+                <span class="juego-consola">PS3</span>
+                <h3>God Of War Ascension</h3>
+                <p>Precuela que narra los orígenes de Kratos como guerrero espartano traicionado por Ares. Combate fluido, puzzles ambientales colosales y modo multijugador exclusivo de PS3.</p>
+                <strong>$2.300</strong>
+                <a href="Compragowascension.html">Comprar ahora</a>
+            </article>
+
+            <article class="juego-card"
+                     data-consola="ps3"
+                     data-genero="terror">
+                <img src="images/juegos/silent-hill-ps3.jpg" alt="silent hill">
+                <span class="juego-consola">PS3</span>
+                <h3>SILENT HILL</h3>
+                <p>El clásico de terror psicológico que definió el género. Harry Mason busca a su hija en la misteriosa Silent Hill, plagada de criaturas de pesadilla y una atmósfera opresiva sin igual.</p>
+                <strong>$2.800</strong>
+                <a href="Comprasilenthill.html">Comprar ahora</a>
+            </article>
+
+            <article class="juego-card"
+                     data-consola="ps3"
+                     data-genero="accion">
+                <img src="images/juegos/farcry4ps3.jpeg" alt="far cry 4">
+                <span class="juego-consola">PS3</span>
+                <h3>Far Cry 4</h3>
+                <p>Shooter en primera persona ambientado en Kyrat, un reino ficticio del Himalaya. Ajay Ghale debe liberar a su pueblo del tirano Pagan Min en mundo abierto repleto de acción.</p>
+                <strong>$3.600</strong>
+                <a href="Comprafarcry4.html">Comprar ahora</a>
+            </article>
+
+            <article class="juego-card"
+                     data-consola="ps3"
+                     data-genero="accion">
+                <img src="images/juegos/pay-day-2-ps3.jpg" alt="pay day 2">
+                <span class="juego-consola">PS3</span>
+                <h3>PayDay 2</h3>
+                <p>Shooter cooperativo de robos donde planificas y ejecutas asaltos a bancos, joyerías y más. Sube de nivel, desbloquea nuevas habilidades y equipo en cooperativo de hasta 4 jugadores.</p>
+                <strong>$2.000</strong>
+                <a href="Comprapayday2.html">Comprar ahora</a>
+            </article>
+
+        </div>
+    </section>
+</main>
+<script src="producto-links.js"></script>
+</body>
+</html>

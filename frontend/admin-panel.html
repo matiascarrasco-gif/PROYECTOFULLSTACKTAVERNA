@@ -1,0 +1,1181 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel Admin | La Taverna</title>
+    <link rel="stylesheet" href="estilos.css">
+    <link rel="icon" href="images/logopagina.jpg" type="image/jpeg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #0a0a14 0%, #0f0020 50%, #090d1a 100%);
+            min-height: 100vh;
+            font-family: 'Inter', 'Rajdhani', sans-serif;
+            background-attachment: fixed;
+        }
+
+        /* ─── TOPBAR ─── */
+        .dash-topbar {
+            background: rgba(255,255,255,0.025);
+            border-bottom: 1px solid rgba(124,58,237,0.22);
+            backdrop-filter: blur(12px);
+            padding: 0 32px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .dash-topbar-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 66px;
+            gap: 20px;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .dash-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .dash-brand img {
+            height: 40px;
+            width: auto;
+        }
+
+        .dash-brand-text {
+            color: white;
+            line-height: 1.1;
+        }
+
+        .dash-brand-text strong {
+            font-size: 1.05rem;
+            font-weight: 800;
+            font-family: 'Rajdhani', sans-serif;
+            letter-spacing: 1px;
+        }
+
+        .dash-brand-text small {
+            display: block;
+            font-size: 0.68rem;
+            color: #8b5cf6;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        .dash-topbar-right {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .dash-admin-badge {
+            background: linear-gradient(135deg, rgba(124,58,237,0.2), rgba(219,39,119,0.2));
+            border: 1px solid rgba(124,58,237,0.4);
+            color: #c4b5fd;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.82rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .dash-btn {
+            background: rgba(255,255,255,0.07);
+            color: #c4b5fd;
+            border: 1px solid rgba(124,58,237,0.3);
+            padding: 8px 18px;
+            border-radius: 9px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            font-family: inherit;
+        }
+
+        .dash-btn:hover {
+            background: rgba(124,58,237,0.25);
+            border-color: #7c3aed;
+            color: white;
+            text-decoration: none;
+        }
+
+        .dash-btn.danger {
+            background: rgba(220,38,38,0.1);
+            border-color: rgba(220,38,38,0.3);
+            color: #fca5a5;
+        }
+
+        .dash-btn.danger:hover {
+            background: rgba(220,38,38,0.25);
+            border-color: #ef4444;
+            color: white;
+        }
+
+        .dash-btn.primary {
+            background: linear-gradient(135deg, #7c3aed, #db2777);
+            border-color: transparent;
+            color: white;
+            box-shadow: 0 3px 10px rgba(124,58,237,0.4);
+        }
+
+        .dash-btn.primary:hover {
+            background: linear-gradient(135deg, #6d28d9, #be185d);
+            transform: translateY(-1px);
+            box-shadow: 0 5px 16px rgba(124,58,237,0.5);
+        }
+
+        /* ─── SIDEBAR + MAIN LAYOUT ─── */
+        .dash-layout {
+            display: grid;
+            grid-template-columns: 220px 1fr;
+            max-width: 1300px;
+            margin: 0 auto;
+            gap: 0;
+            min-height: calc(100vh - 66px);
+        }
+
+        .dash-sidebar {
+            padding: 28px 16px;
+            border-right: 1px solid rgba(124,58,237,0.12);
+        }
+
+        .dash-sidebar-section {
+            margin-bottom: 6px;
+        }
+
+        .dash-sidebar-label {
+            font-size: 0.68rem;
+            color: #5b4e78;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 800;
+            padding: 0 10px;
+            margin-bottom: 6px;
+            margin-top: 18px;
+        }
+
+        .dash-sidebar-btn {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            width: 100%;
+            padding: 10px 14px;
+            border-radius: 10px;
+            border: none;
+            background: transparent;
+            color: #8b7ca8;
+            font-size: 0.88rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-align: left;
+            margin-bottom: 2px;
+            font-family: inherit;
+        }
+
+        .dash-sidebar-btn:hover {
+            background: rgba(124,58,237,0.12);
+            color: #c4b5fd;
+        }
+
+        .dash-sidebar-btn.active {
+            background: rgba(124,58,237,0.2);
+            color: white;
+            border: 1px solid rgba(124,58,237,0.35);
+        }
+
+        .dash-sidebar-icon {
+            font-size: 1.1rem;
+            width: 20px;
+            text-align: center;
+        }
+
+        /* ─── CONTENIDO PRINCIPAL ─── */
+        .dash-main {
+            padding: 32px 36px;
+        }
+
+        /* ─── PANELES DE CONTENIDO ─── */
+        .dash-panel {
+            display: none;
+        }
+
+        .dash-panel.active {
+            display: block;
+        }
+
+        /* ─── HEADER DE PANEL ─── */
+        .panel-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 28px;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .panel-title {
+            color: white;
+            font-size: 1.6rem;
+            font-weight: 900;
+            margin: 0;
+            font-family: 'Rajdhani', sans-serif;
+            letter-spacing: 1px;
+        }
+
+        .panel-subtitle {
+            color: #6d5a8e;
+            font-size: 0.88rem;
+            margin: 4px 0 0;
+        }
+
+        /* ─── STATS DEL DASHBOARD ─── */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+
+        .stat-card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(124,58,237,0.18);
+            border-radius: 16px;
+            padding: 24px 18px;
+            text-align: center;
+            cursor: default;
+            transition: all 0.25s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #7c3aed, #db2777);
+            opacity: 0;
+            transition: opacity 0.25s;
+        }
+
+        .stat-card:hover {
+            background: rgba(124,58,237,0.08);
+            border-color: rgba(124,58,237,0.35);
+            transform: translateY(-3px);
+        }
+
+        .stat-card:hover::before {
+            opacity: 1;
+        }
+
+        .stat-emoji {
+            font-size: 2rem;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .stat-number {
+            font-size: 2.4rem;
+            font-weight: 900;
+            color: white;
+            display: block;
+            line-height: 1;
+            margin-bottom: 4px;
+            font-family: 'Rajdhani', sans-serif;
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            color: #7c6ca0;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-weight: 700;
+        }
+
+        /* ─── SECCIONES DEL PANEL ─── */
+        .dash-section {
+            background: rgba(255,255,255,0.025);
+            border: 1px solid rgba(124,58,237,0.14);
+            border-radius: 18px;
+            padding: 26px;
+            margin-bottom: 24px;
+        }
+
+        .dash-section-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding-bottom: 14px;
+            border-bottom: 1px solid rgba(124,58,237,0.12);
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .dash-section-title {
+            color: white;
+            font-size: 1.08rem;
+            font-weight: 800;
+            margin: 0;
+        }
+
+        /* ─── GRID DE ACTIVIDAD RECIENTE ─── */
+        .recent-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 24px;
+        }
+
+        /* ─── FORM INLINE ─── */
+        .dash-form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+        }
+
+        .dash-form-full {
+            grid-column: 1 / -1;
+        }
+
+        /* ─── FILAS EN TABLAS DEL DASHBOARD ─── */
+        .dash-item-row {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 13px 14px;
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(124,58,237,0.1);
+            border-radius: 12px;
+            margin-bottom: 8px;
+            transition: all 0.2s;
+        }
+
+        .dash-item-row:hover {
+            background: rgba(124,58,237,0.06);
+            border-color: rgba(124,58,237,0.25);
+        }
+
+        .dash-item-img {
+            width: 52px;
+            height: 52px;
+            object-fit: cover;
+            border-radius: 8px;
+            border: 1px solid rgba(124,58,237,0.2);
+            flex-shrink: 0;
+        }
+
+        .dash-item-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .dash-item-name {
+            color: #e2d9f3;
+            font-weight: 700;
+            font-size: 0.92rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            margin-bottom: 3px;
+        }
+
+        .dash-item-meta {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .dash-tag {
+            font-size: 0.72rem;
+            padding: 2px 8px;
+            border-radius: 8px;
+            font-weight: 700;
+        }
+
+        .dash-tag-cat {
+            background: rgba(124,58,237,0.15);
+            color: #a78bfa;
+        }
+
+        .dash-tag-price {
+            background: rgba(5,150,105,0.15);
+            color: #34d399;
+        }
+
+        .dash-tag-date {
+            background: rgba(100,116,139,0.15);
+            color: #94a3b8;
+        }
+
+        .dash-item-actions {
+            display: flex;
+            gap: 6px;
+            flex-shrink: 0;
+        }
+
+        .dash-action-btn {
+            background: rgba(255,255,255,0.06);
+            color: #a78bfa;
+            border: 1px solid rgba(124,58,237,0.25);
+            padding: 6px 12px;
+            border-radius: 7px;
+            font-size: 0.78rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+
+        .dash-action-btn:hover {
+            background: rgba(124,58,237,0.25);
+            border-color: #7c3aed;
+            color: white;
+        }
+
+        .dash-action-btn.del {
+            background: rgba(220,38,38,0.07);
+            border-color: rgba(220,38,38,0.22);
+            color: #f87171;
+        }
+
+        .dash-action-btn.del:hover {
+            background: rgba(220,38,38,0.22);
+            border-color: #ef4444;
+            color: white;
+        }
+
+        /* ─── ESTADO VACÍO ─── */
+        .dash-empty {
+            text-align: center;
+            padding: 48px 24px;
+            color: #5b4e78;
+            font-size: 0.95rem;
+            border: 2px dashed rgba(124,58,237,0.2);
+            border-radius: 14px;
+        }
+
+        .dash-empty-icon {
+            font-size: 2.5rem;
+            display: block;
+            margin-bottom: 10px;
+            opacity: 0.7;
+        }
+
+        /* ─── NOTIFICACIÓN ACCESO DENEGADO ─── */
+        .dash-access-denied {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 70vh;
+            text-align: center;
+            padding: 40px;
+        }
+
+        .dash-access-denied .icon {
+            font-size: 5rem;
+            margin-bottom: 20px;
+        }
+
+        .dash-access-denied h2 {
+            color: white;
+            font-size: 1.8rem;
+            margin: 0 0 12px;
+        }
+
+        .dash-access-denied p {
+            color: #7c6ca0;
+            font-size: 1rem;
+            margin-bottom: 24px;
+        }
+
+        /* ─── FORM RÁPIDO EN PANEL ─── */
+        .quick-form {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(124,58,237,0.12);
+            border-radius: 14px;
+            padding: 22px;
+        }
+
+        .quick-form .admin-field label {
+            color: #a78bfa;
+        }
+
+        .quick-form .admin-field input,
+        .quick-form .admin-field select,
+        .quick-form .admin-field textarea {
+            background: rgba(255,255,255,0.05);
+            border-color: rgba(124,58,237,0.25);
+            color: #e2d9f3;
+        }
+
+        .quick-form .admin-field input::placeholder,
+        .quick-form .admin-field textarea::placeholder {
+            color: #5b4e78;
+        }
+
+        .quick-form .admin-field input:focus,
+        .quick-form .admin-field select:focus,
+        .quick-form .admin-field textarea:focus {
+            border-color: #7c3aed;
+            box-shadow: 0 0 0 3px rgba(124,58,237,0.15);
+            background: rgba(255,255,255,0.07);
+        }
+
+        .quick-form .admin-field select option {
+            background: #1a0842;
+            color: #e2d9f3;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .dash-layout {
+                grid-template-columns: 1fr;
+            }
+            .dash-sidebar {
+                border-right: none;
+                border-bottom: 1px solid rgba(124,58,237,0.12);
+                padding: 16px;
+                display: flex;
+                gap: 8px;
+                flex-wrap: wrap;
+            }
+            .dash-sidebar-label { display: none; }
+            .dash-sidebar-btn {
+                padding: 8px 12px;
+                border-radius: 8px;
+                font-size: 0.8rem;
+            }
+            .dash-main { padding: 20px 16px; }
+            .dash-form-grid { grid-template-columns: 1fr; }
+            .recent-grid { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 600px) {
+            .dash-topbar { padding: 0 16px; }
+            .dash-topbar-inner { height: 56px; }
+            .dash-admin-badge { display: none; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- TOPBAR -->
+    <header class="dash-topbar">
+        <div class="dash-topbar-inner">
+            <a href="Index.html" class="dash-brand">
+                <img src="images/logosinfondo.png" alt="La Taverna">
+                <div class="dash-brand-text">
+                    <strong>La Taverna</strong>
+                    <small>⚙️ Panel Admin</small>
+                </div>
+            </a>
+            <div class="dash-topbar-right">
+                <span class="dash-admin-badge">👑 Administrador</span>
+                <a href="Index.html" class="dash-btn">🏠 Ver Tienda</a>
+                <a href="Blog.html" class="dash-btn">📰 Ver Blog</a>
+                <button class="dash-btn danger" onclick="adminLogout()">🚪 Cerrar Sesión</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- LAYOUT -->
+    <div class="dash-layout">
+
+        <!-- SIDEBAR -->
+        <aside class="dash-sidebar">
+            <div class="dash-sidebar-label">General</div>
+            <button class="dash-sidebar-btn active" onclick="showPanel('overview', this)">
+                <span class="dash-sidebar-icon">📊</span> Dashboard
+            </button>
+
+            <div class="dash-sidebar-label">Catálogo</div>
+            <button class="dash-sidebar-btn" onclick="showPanel('products', this)">
+                <span class="dash-sidebar-icon">📦</span> Productos
+            </button>
+            <button class="dash-sidebar-btn" onclick="showPanel('add-product', this)">
+                <span class="dash-sidebar-icon">➕</span> Agregar Producto
+            </button>
+
+            <div class="dash-sidebar-label">Blog</div>
+            <button class="dash-sidebar-btn" onclick="showPanel('posts', this)">
+                <span class="dash-sidebar-icon">📰</span> Posts
+            </button>
+            <button class="dash-sidebar-btn" onclick="showPanel('add-post', this)">
+                <span class="dash-sidebar-icon">📝</span> Publicar Post
+            </button>
+
+            <div class="dash-sidebar-label">Sistema</div>
+            <button class="dash-sidebar-btn" onclick="showPanel('settings', this)">
+                <span class="dash-sidebar-icon">🔧</span> Configuración
+            </button>
+        </aside>
+
+        <!-- CONTENIDO PRINCIPAL -->
+        <main class="dash-main" id="dash-main-content">
+
+            <!-- Panel: OVERVIEW -->
+            <section class="dash-panel active" id="panel-overview">
+                <div class="panel-header">
+                    <div>
+                        <h1 class="panel-title">📊 Dashboard</h1>
+                        <p class="panel-subtitle">Resumen general de La Taverna</p>
+                    </div>
+                    <button class="dash-btn primary" onclick="showPanel('add-product', document.querySelector('.dash-sidebar-btn:nth-child(3))'))">
+                        ➕ Agregar Producto
+                    </button>
+                </div>
+
+                <!-- Stats -->
+                <div class="stats-grid" id="dash-stats-grid">
+                    <div class="stat-card">
+                        <span class="stat-emoji">📦</span>
+                        <span class="stat-number" id="stat-products">0</span>
+                        <span class="stat-label">Productos Creados</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-emoji">📰</span>
+                        <span class="stat-number" id="stat-posts">0</span>
+                        <span class="stat-label">Posts Publicados</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-emoji">🗑️</span>
+                        <span class="stat-number" id="stat-deleted">0</span>
+                        <span class="stat-label">Ocultados</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-emoji">✅</span>
+                        <span class="stat-number">100%</span>
+                        <span class="stat-label">Sistema Activo</span>
+                    </div>
+                </div>
+
+                <!-- Actividad reciente -->
+                <div class="recent-grid">
+                    <div class="dash-section">
+                        <div class="dash-section-head">
+                            <h3 class="dash-section-title">📦 Últimos Productos</h3>
+                            <button class="dash-btn" onclick="showPanel('products', null)">Ver todos</button>
+                        </div>
+                        <div id="recent-products-list"></div>
+                    </div>
+                    <div class="dash-section">
+                        <div class="dash-section-head">
+                            <h3 class="dash-section-title">📰 Últimos Posts</h3>
+                            <button class="dash-btn" onclick="showPanel('posts', null)">Ver todos</button>
+                        </div>
+                        <div id="recent-posts-list"></div>
+                    </div>
+                </div>
+
+                <!-- Accesos rápidos -->
+                <div class="dash-section">
+                    <div class="dash-section-head">
+                        <h3 class="dash-section-title">⚡ Acciones Rápidas</h3>
+                    </div>
+                    <div style="display:flex; gap:12px; flex-wrap:wrap;">
+                        <button class="dash-btn primary" onclick="showPanel('add-product', null)">➕ Nuevo Producto</button>
+                        <button class="dash-btn primary" onclick="showPanel('add-post', null)">📝 Nuevo Post</button>
+                        <a href="Index.html" class="dash-btn">🏠 Ver Tienda</a>
+                        <a href="Blog.html" class="dash-btn">📰 Ver Blog</a>
+                        <button class="dash-btn danger" onclick="confirmReset()">🗑️ Resetear Datos</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Panel: PRODUCTOS -->
+            <section class="dash-panel" id="panel-products">
+                <div class="panel-header">
+                    <div>
+                        <h1 class="panel-title">📦 Gestión de Productos</h1>
+                        <p class="panel-subtitle">Productos agregados desde el panel de administración</p>
+                    </div>
+                    <button class="dash-btn primary" onclick="showPanel('add-product', null)">➕ Agregar Producto</button>
+                </div>
+                <div class="dash-section">
+                    <div id="dash-products-list"></div>
+                </div>
+            </section>
+
+            <!-- Panel: AGREGAR PRODUCTO -->
+            <section class="dash-panel" id="panel-add-product">
+                <div class="panel-header">
+                    <div>
+                        <h1 class="panel-title">➕ Agregar Producto</h1>
+                        <p class="panel-subtitle">El producto aparecerá en la sección "Productos Destacados" del Index</p>
+                    </div>
+                </div>
+                <div class="dash-section">
+                    <form class="quick-form" id="dash-add-product-form">
+                        <div class="dash-form-grid">
+                            <div class="admin-field">
+                                <label>Nombre del Producto *</label>
+                                <input type="text" id="dap-name" placeholder="Ej: Silla Gamer Pro X" required>
+                            </div>
+                            <div class="admin-field">
+                                <label>Precio *</label>
+                                <input type="text" id="dap-price" placeholder="Ej: $89.990" required>
+                            </div>
+                            <div class="admin-field">
+                                <label>Categoría</label>
+                                <select id="dap-cat">
+                                    <option value="Productos destacados">Productos Destacados</option>
+                                    <option value="Accesorios">Accesorios</option>
+                                    <option value="Consolas">Consolas</option>
+                                    <option value="Mouse / Mousepad">Mouse / Mousepad</option>
+                                    <option value="Juegos">Juegos Digitales</option>
+                                    <option value="Sillas Gamers">Sillas Gamers</option>
+                                    <option value="PC Gamers">PC Gamers</option>
+                                </select>
+                            </div>
+                            <div class="admin-field">
+                                <label>Link de Compra</label>
+                                <input type="text" id="dap-link" placeholder="Ej: CompraProducto.html">
+                            </div>
+                            <div class="admin-field dash-form-full">
+                                <label>URL de Imagen</label>
+                                <input type="text" id="dap-img" placeholder="Ej: images/consolas/ps5slim.png">
+                            </div>
+                        </div>
+                        <div style="display:flex; gap:10px; justify-content:flex-end; margin-top:20px;">
+                            <button type="reset" class="admin-btn-secondary">Limpiar</button>
+                            <button type="submit" class="admin-btn-primary">✅ Guardar Producto</button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Lista rápida de productos creados -->
+                <div class="dash-section" style="margin-top:0">
+                    <div class="dash-section-head">
+                        <h3 class="dash-section-title">📦 Productos Creados</h3>
+                    </div>
+                    <div id="dash-products-list-2"></div>
+                </div>
+            </section>
+
+            <!-- Panel: POSTS DEL BLOG -->
+            <section class="dash-panel" id="panel-posts">
+                <div class="panel-header">
+                    <div>
+                        <h1 class="panel-title">📰 Posts del Blog</h1>
+                        <p class="panel-subtitle">Posts publicados por el administrador</p>
+                    </div>
+                    <button class="dash-btn primary" onclick="showPanel('add-post', null)">📝 Publicar Post</button>
+                </div>
+                <div class="dash-section">
+                    <div id="dash-posts-list"></div>
+                </div>
+            </section>
+
+            <!-- Panel: PUBLICAR POST -->
+            <section class="dash-panel" id="panel-add-post">
+                <div class="panel-header">
+                    <div>
+                        <h1 class="panel-title">📝 Publicar en el Blog</h1>
+                        <p class="panel-subtitle">El artículo aparecerá inmediatamente en Blog.html</p>
+                    </div>
+                </div>
+                <div class="dash-section">
+                    <form class="quick-form" id="dash-add-post-form">
+                        <div class="dash-form-grid">
+                            <div class="admin-field dash-form-full">
+                                <label>Título del Artículo *</label>
+                                <input type="text" id="dbp-title" placeholder="Ej: Los mejores juegos del año 2026" required>
+                            </div>
+                            <div class="admin-field">
+                                <label>Categoría</label>
+                                <select id="dbp-cat">
+                                    <option value="juegos">🎮 Juegos</option>
+                                    <option value="consolas">🕹️ Consolas</option>
+                                    <option value="accesorios">🖥️ Accesorios</option>
+                                    <option value="setup">💡 Setup</option>
+                                    <option value="opinion">💬 Opinión</option>
+                                </select>
+                            </div>
+                            <div class="admin-field">
+                                <label>Autor</label>
+                                <input type="text" id="dbp-author" placeholder="Ej: Redacción LT" value="👤 Admin">
+                            </div>
+                            <div class="admin-field dash-form-full">
+                                <label>Resumen / Extracto *</label>
+                                <textarea id="dbp-excerpt" placeholder="Descripción corta que aparecerá en la tarjeta del blog..." rows="3" required></textarea>
+                            </div>
+                            <div class="admin-field dash-form-full">
+                                <label>Contenido Completo del Artículo</label>
+                                <textarea id="dbp-body" placeholder="Escribe aquí el contenido completo del artículo. Puedes usar saltos de línea para separar párrafos." rows="8"></textarea>
+                            </div>
+                            <div class="admin-field dash-form-full">
+                                <label>URL de Imagen de Portada</label>
+                                <input type="text" id="dbp-img" placeholder="Ej: images/juegos/gtavi.jpg">
+                            </div>
+                        </div>
+                        <div style="display:flex; gap:10px; justify-content:flex-end; margin-top:20px;">
+                            <button type="reset" class="admin-btn-secondary">Limpiar</button>
+                            <button type="submit" class="admin-btn-primary">🚀 Publicar Artículo</button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+
+            <!-- Panel: CONFIGURACIÓN -->
+            <section class="dash-panel" id="panel-settings">
+                <div class="panel-header">
+                    <div>
+                        <h1 class="panel-title">🔧 Configuración</h1>
+                        <p class="panel-subtitle">Ajustes del sistema de administración</p>
+                    </div>
+                </div>
+
+                <div class="dash-section">
+                    <div class="dash-section-head">
+                        <h3 class="dash-section-title">🔐 Información de Sesión</h3>
+                    </div>
+                    <div style="color:#a78bfa; font-size:0.95rem; line-height:1.8;">
+                        <p>👤 <strong style="color:white">Usuario:</strong> admin</p>
+                        <p>🔑 <strong style="color:white">Estado:</strong> <span style="color:#34d399">✅ Sesión activa</span></p>
+                        <p>💾 <strong style="color:white">Almacenamiento:</strong> localStorage del navegador</p>
+                        <p>🔒 <strong style="color:white">Seguridad:</strong> Los datos persisten en este dispositivo/navegador</p>
+                    </div>
+                </div>
+
+                <div class="dash-section">
+                    <div class="dash-section-head">
+                        <h3 class="dash-section-title">🗑️ Gestión de Datos</h3>
+                    </div>
+                    <div style="display:flex; flex-direction:column; gap:12px; max-width:420px;">
+                        <div style="background:rgba(220,38,38,0.06); border:1px solid rgba(220,38,38,0.2); border-radius:12px; padding:18px;">
+                            <p style="color:#fca5a5; font-size:0.9rem; margin:0 0 12px; font-weight:600;">⚠️ Zona de Peligro</p>
+                            <p style="color:#7c6ca0; font-size:0.83rem; margin:0 0 14px;">Estas acciones eliminarán datos permanentemente del localStorage.</p>
+                            <div style="display:flex; gap:8px; flex-wrap:wrap;">
+                                <button class="dash-btn danger" onclick="clearProducts()">🗑️ Borrar Productos</button>
+                                <button class="dash-btn danger" onclick="clearPosts()">🗑️ Borrar Posts</button>
+                                <button class="dash-btn danger" onclick="clearHidden()">👁️ Mostrar Ocultos</button>
+                                <button class="dash-btn danger" onclick="confirmReset()">💥 Resetear Todo</button>
+                            </div>
+                        </div>
+                        <button class="dash-btn danger" onclick="adminLogout()" style="width:fit-content;">
+                            🚪 Cerrar Sesión
+                        </button>
+                    </div>
+                </div>
+
+                <div class="dash-section">
+                    <div class="dash-section-head">
+                        <h3 class="dash-section-title">📋 Instrucciones de Uso</h3>
+                    </div>
+                    <div style="color:#8b7ca8; font-size:0.9rem; line-height:1.8;">
+                        <p>• <strong style="color:#c4b5fd">Agregar Productos:</strong> Usa el panel "Agregar Producto". Los productos aparecen en la sección Destacados del Index.</p>
+                        <p>• <strong style="color:#c4b5fd">Editar/Eliminar:</strong> En cualquier página de la tienda, pasa el cursor sobre un producto para ver los botones de editar/eliminar.</p>
+                        <p>• <strong style="color:#c4b5fd">Blog:</strong> Ve al Blog con sesión activa y aparecerá el botón "📝 Post" en la toolbar para publicar artículos.</p>
+                        <p>• <strong style="color:#c4b5fd">Persistencia:</strong> Todos los cambios se guardan en localStorage. Se mantienen al recargar la página.</p>
+                        <p>• <strong style="color:#c4b5fd">Restaurar ocultos:</strong> Si eliminaste algo por error, usa "Mostrar Ocultos" en la zona de peligro.</p>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <script src="admin.js"></script>
+    <script>
+        // ─── VERIFICAR ACCESO ───────────────────────────────────
+        document.addEventListener('DOMContentLoaded', () => {
+            if (!adminIsLogged()) {
+                document.getElementById('dash-main-content').innerHTML = `
+                <div class="dash-access-denied">
+                    <span class="icon">🔒</span>
+                    <h2>Acceso Restringido</h2>
+                    <p>Necesitas iniciar sesión como administrador para acceder a este panel.</p>
+                    <a href="Index.html" class="dash-btn primary" style="font-size:1rem; padding:12px 28px;">
+                        🏠 Ir al Inicio
+                    </a>
+                </div>`;
+                return;
+            }
+
+            // Inicializar dashboard
+            updateStats();
+            renderRecentProducts();
+            renderRecentPosts();
+            setupForms();
+        });
+
+        // ─── NAVEGACIÓN ─────────────────────────────────────────
+        function showPanel(panelId, triggerBtn) {
+            // Ocultar todos los paneles
+            document.querySelectorAll('.dash-panel').forEach(p => p.classList.remove('active'));
+            // Mostrar el panel solicitado
+            const target = document.getElementById('panel-' + panelId);
+            if (target) target.classList.add('active');
+
+            // Actualizar sidebar activo
+            document.querySelectorAll('.dash-sidebar-btn').forEach(b => b.classList.remove('active'));
+            if (triggerBtn) triggerBtn.classList.add('active');
+
+            // Cargar contenido del panel
+            if (panelId === 'overview') { updateStats(); renderRecentProducts(); renderRecentPosts(); }
+            if (panelId === 'products') renderDashProducts();
+            if (panelId === 'add-product') { renderDashProductsMini(); }
+            if (panelId === 'posts') renderDashPosts();
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // ─── STATS ──────────────────────────────────────────────
+        function updateStats() {
+            const products = getAdminProducts();
+            const posts = getAdminBlogPosts();
+            const deletedP = getDeletedProducts();
+            const deletedPosts = getDeletedPosts();
+
+            document.getElementById('stat-products').textContent = products.length;
+            document.getElementById('stat-posts').textContent = posts.length;
+            document.getElementById('stat-deleted').textContent = deletedP.length + deletedPosts.length;
+        }
+
+        // ─── RENDER RECENT ───────────────────────────────────────
+        function renderRecentProducts() {
+            const products = getAdminProducts().slice(-3).reverse();
+            const el = document.getElementById('recent-products-list');
+            if (!el) return;
+            if (products.length === 0) {
+                el.innerHTML = `<div class="dash-empty"><span class="dash-empty-icon">📦</span>Sin productos aún</div>`;
+                return;
+            }
+            el.innerHTML = products.map(p => `
+            <div class="dash-item-row">
+                <img src="${p.img}" alt="${p.name}" class="dash-item-img" onerror="this.src='images/logosinfondo.png'">
+                <div class="dash-item-info">
+                    <div class="dash-item-name">${p.name}</div>
+                    <div class="dash-item-meta">
+                        <span class="dash-tag dash-tag-cat">${p.category}</span>
+                        <span class="dash-tag dash-tag-price">${p.price}</span>
+                    </div>
+                </div>
+                <div class="dash-item-actions">
+                    <button class="dash-action-btn del" onclick="deleteAdminProduct('${p.id}'); updateStats(); renderRecentProducts();">🗑️</button>
+                </div>
+            </div>`).join('');
+        }
+
+        function renderRecentPosts() {
+            const posts = getAdminBlogPosts().slice(-3).reverse();
+            const el = document.getElementById('recent-posts-list');
+            if (!el) return;
+            if (posts.length === 0) {
+                el.innerHTML = `<div class="dash-empty"><span class="dash-empty-icon">📰</span>Sin posts aún</div>`;
+                return;
+            }
+            el.innerHTML = posts.map(p => `
+            <div class="dash-item-row">
+                <img src="${p.img}" alt="${p.title}" class="dash-item-img" onerror="this.src='images/logosinfondo.png'">
+                <div class="dash-item-info">
+                    <div class="dash-item-name">${p.title}</div>
+                    <div class="dash-item-meta">
+                        <span class="dash-tag dash-tag-cat">${p.categoryLabel}</span>
+                        <span class="dash-tag dash-tag-date">${p.date}</span>
+                    </div>
+                </div>
+                <div class="dash-item-actions">
+                    <button class="dash-action-btn del" onclick="deleteAdminBlogPost('${p.id}'); renderRecentPosts(); updateStats();">🗑️</button>
+                </div>
+            </div>`).join('');
+        }
+
+        // ─── RENDER PANEL PRODUCTOS ──────────────────────────────
+        function renderDashProducts() {
+            const products = getAdminProducts();
+            const el = document.getElementById('dash-products-list');
+            if (!el) return;
+            if (products.length === 0) {
+                el.innerHTML = `<div class="dash-empty"><span class="dash-empty-icon">📦</span>No hay productos creados aún.<br><button class="dash-btn primary" onclick="showPanel('add-product', null)" style="margin-top:14px;">➕ Agregar Producto</button></div>`;
+                return;
+            }
+            el.innerHTML = products.map(p => `
+            <div class="dash-item-row" id="dp-row-${p.id}">
+                <img src="${p.img}" alt="${p.name}" class="dash-item-img" onerror="this.src='images/logosinfondo.png'">
+                <div class="dash-item-info">
+                    <div class="dash-item-name">${p.name}</div>
+                    <div class="dash-item-meta">
+                        <span class="dash-tag dash-tag-cat">${p.category}</span>
+                        <span class="dash-tag dash-tag-price">${p.price}</span>
+                        <span class="dash-tag dash-tag-date">Creado: ${p.createdAt}</span>
+                    </div>
+                </div>
+                <div class="dash-item-actions">
+                    <button class="dash-action-btn" onclick="openEditAdminProductModal('${p.id}'); setTimeout(renderDashProducts, 300);">✏️ Editar</button>
+                    <button class="dash-action-btn del" onclick="deleteAdminProduct('${p.id}'); renderDashProducts(); updateStats();">🗑️ Eliminar</button>
+                </div>
+            </div>`).join('');
+        }
+
+        function renderDashProductsMini() {
+            const products = getAdminProducts();
+            const el = document.getElementById('dash-products-list-2');
+            if (!el) return;
+            if (products.length === 0) {
+                el.innerHTML = `<div class="dash-empty"><span class="dash-empty-icon">📦</span>Aún no has creado productos</div>`;
+                return;
+            }
+            el.innerHTML = products.map(p => `
+            <div class="dash-item-row">
+                <img src="${p.img}" alt="${p.name}" class="dash-item-img" onerror="this.src='images/logosinfondo.png'">
+                <div class="dash-item-info">
+                    <div class="dash-item-name">${p.name}</div>
+                    <div class="dash-item-meta">
+                        <span class="dash-tag dash-tag-cat">${p.category}</span>
+                        <span class="dash-tag dash-tag-price">${p.price}</span>
+                    </div>
+                </div>
+                <div class="dash-item-actions">
+                    <button class="dash-action-btn del" onclick="deleteAdminProduct('${p.id}'); renderDashProductsMini();">🗑️</button>
+                </div>
+            </div>`).join('');
+        }
+
+        // ─── RENDER PANEL POSTS ───────────────────────────────────
+        function renderDashPosts() {
+            const posts = getAdminBlogPosts();
+            const el = document.getElementById('dash-posts-list');
+            if (!el) return;
+            if (posts.length === 0) {
+                el.innerHTML = `<div class="dash-empty"><span class="dash-empty-icon">📰</span>No hay posts publicados aún.<br><button class="dash-btn primary" onclick="showPanel('add-post', null)" style="margin-top:14px;">📝 Publicar Post</button></div>`;
+                return;
+            }
+            el.innerHTML = posts.map(p => `
+            <div class="dash-item-row" id="dp-post-${p.id}">
+                <img src="${p.img}" alt="${p.title}" class="dash-item-img" onerror="this.src='images/logosinfondo.png'">
+                <div class="dash-item-info">
+                    <div class="dash-item-name">${p.title}</div>
+                    <div class="dash-item-meta">
+                        <span class="dash-tag dash-tag-cat">${p.categoryLabel}</span>
+                        <span class="dash-tag dash-tag-date">${p.date}</span>
+                        <span class="dash-tag" style="background:rgba(100,116,139,0.15);color:#94a3b8">${p.author}</span>
+                    </div>
+                </div>
+                <div class="dash-item-actions">
+                    <button class="dash-action-btn" onclick="openEditBlogPostModal('${p.id}'); setTimeout(renderDashPosts, 300);">✏️ Editar</button>
+                    <button class="dash-action-btn del" onclick="deleteAdminBlogPost('${p.id}'); renderDashPosts(); updateStats();">🗑️ Eliminar</button>
+                </div>
+            </div>`).join('');
+        }
+
+        // ─── FORMULARIOS ─────────────────────────────────────────
+        function setupForms() {
+            // Form agregar producto
+            const addProdForm = document.getElementById('dash-add-product-form');
+            if (addProdForm) {
+                addProdForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    const products = getAdminProducts();
+                    const newProduct = {
+                        id: 'ap_' + Date.now(),
+                        name: document.getElementById('dap-name').value.trim(),
+                        price: document.getElementById('dap-price').value.trim(),
+                        category: document.getElementById('dap-cat').value,
+                        img: document.getElementById('dap-img').value.trim() || 'images/logosinfondo.png',
+                        link: document.getElementById('dap-link').value.trim() || '#',
+                        createdAt: new Date().toLocaleDateString('es-CL')
+                    };
+                    products.push(newProduct);
+                    saveAdminProducts(products);
+                    addProdForm.reset();
+                    document.getElementById('dap-img').value = '';
+                    showAdminToast('✅ Producto creado exitosamente');
+                    updateStats();
+                    renderDashProductsMini();
+                });
+            }
+
+            // Form agregar post
+            const addPostForm = document.getElementById('dash-add-post-form');
+            if (addPostForm) {
+                addPostForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    const posts = getAdminBlogPosts();
+                    const catVal = document.getElementById('dbp-cat').value;
+                    const catLabels = { juegos:'🎮 Juegos', consolas:'🕹️ Consolas', accesorios:'🖥️ Accesorios', setup:'💡 Setup', opinion:'💬 Opinión' };
+                    const newPost = {
+                        id: 'bp_' + Date.now(),
+                        title: document.getElementById('dbp-title').value.trim(),
+                        category: catVal,
+                        categoryLabel: catLabels[catVal] || catVal,
+                        excerpt: document.getElementById('dbp-excerpt').value.trim(),
+                        body: document.getElementById('dbp-body').value.trim(),
+                        img: document.getElementById('dbp-img').value.trim() || 'images/logosinfondo.png',
+                        author: document.getElementById('dbp-author').value.trim() || '👤 Admin',
+                        date: new Date().toLocaleDateString('es-CL', { day: 'numeric', month: 'short', year: 'numeric' })
+                    };
+                    posts.push(newPost);
+                    saveAdminBlogPosts(posts);
+                    addPostForm.reset();
+                    document.getElementById('dbp-author').value = '👤 Admin';
+                    showAdminToast('🚀 Post publicado — ve al Blog para verlo');
+                    updateStats();
+                });
+            }
+        }
+
+        // ─── LIMPIAR DATOS ────────────────────────────────────────
+        function clearProducts() {
+            if (!confirm('¿Borrar todos los productos creados?')) return;
+            saveAdminProducts([]);
+            showAdminToast('🗑️ Productos borrados');
+            updateStats();
+            renderDashProducts();
+            renderRecentProducts();
+        }
+
+        function clearPosts() {
+            if (!confirm('¿Borrar todos los posts publicados?')) return;
+            saveAdminBlogPosts([]);
+            showAdminToast('🗑️ Posts borrados');
+            updateStats();
+            renderDashPosts();
+            renderRecentPosts();
+        }
+
+        function clearHidden() {
+            if (!confirm('¿Mostrar todos los productos/posts ocultos?')) return;
+            localStorage.removeItem(KEY_DELETED_PRODUCTS || 'taverna_admin_deleted');
+            localStorage.removeItem(KEY_DELETED_POSTS || 'taverna_admin_deleted_posts');
+            showAdminToast('👁️ Todos los elementos ocultos han sido restaurados');
+            updateStats();
+        }
+
+        function confirmReset() {
+            if (!confirm('⚠️ ¿Estás seguro? Esto borrará TODOS los datos del admin (productos, posts, cambios de precios).')) return;
+            if (!confirm('Esta acción NO puede deshacerse. ¿Confirmar?')) return;
+            localStorage.removeItem('taverna_admin_products');
+            localStorage.removeItem('taverna_admin_product_edits');
+            localStorage.removeItem('taverna_admin_blog_posts');
+            localStorage.removeItem('taverna_admin_deleted');
+            localStorage.removeItem('taverna_admin_deleted_posts');
+            showAdminToast('💥 Datos reseteados. Recargando...');
+            setTimeout(() => location.reload(), 1500);
+        }
+    </script>
+
+</body>
+
+</html>

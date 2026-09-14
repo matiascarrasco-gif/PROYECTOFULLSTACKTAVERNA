@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Producto | La Taverna</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+
+<body>
+    <header>
+        <h1>
+            <a href="Index.html">
+                <img src="images/logosinfondo.png" alt="La Taverna" class="logo-titulo">
+            </a>
+        </h1>
+
+        <nav class="menu-principal">
+            <a href="Juegos.html">Juegos Digitales</a>
+            <a href="Consolas.html">Consolas</a>
+            <a href="PcGamers.html">PC Gamers</a>
+            <a href="Mouse-Mousepad.html">Mouse / Mousepad</a>
+            <a href="SillasGamers.html">Sillas Gamers</a>
+            <a href="Accesorios.html">Accesorios</a>
+            <a href="Poleras.html">Poleras Personalizadas</a>
+            <a href="Poleron.html">Polerones Gamers Personalizados</a>
+            <a href="Blog.html">Blog</a>
+            <a href="ServicioTecnico.html">Servicio Tecnico</a>
+        </nav>
+    </header>
+
+    <main class="contenedor">
+        <section class="tarjeta producto-individual" id="productoIndividual">
+            <p>Cargando producto...</p>
+        </section>
+    </main>
+
+    <script>
+        const parametros = new URLSearchParams(location.search);
+        const pagina = parametros.get("pagina");
+        const id = parametros.get("id");
+        const imagenBuscada = parametros.get("imagen");
+        const contenedor = document.querySelector("#productoIndividual");
+
+        if (!pagina || (!id && !imagenBuscada)) {
+            contenedor.innerHTML = "<h2>Producto no encontrado</h2>";
+        } else {
+            fetch(pagina)
+                .then(respuesta => {
+                    if (!respuesta.ok) {
+                        throw new Error(`No se encontró: ${pagina}`);
+                    }
+                    return respuesta.text();
+                })
+                .then(html => {
+                    const documento = new DOMParser().parseFromString(html, "text/html");
+
+                    let producto = id
+                        ? documento.getElementById(id)
+                        : [...documento.querySelectorAll(
+                            ".producto-detalle, .juego-card"
+                        )].find(elemento => {
+                            const imagen = elemento.querySelector("img");
+                            return imagen &&
+                                imagen.getAttribute("src").split("/").pop() === imagenBuscada;
+                        });
+
+                    if (!producto) {
+                        contenedor.innerHTML = "<h2>Producto no encontrado</h2>";
+                        return;
+                    }
+
+                    const imagen = producto.querySelector("img");
+                    const titulo = producto.querySelector("h2, h3");
+                    
+                    // Extracción inteligente de precio y descripción
+                    let precioEl = producto.querySelector("strong, .precio");
+                    if (!precioEl) {
+                        const candidatos = producto.querySelectorAll("p, span, div");
+                        for (const cand of candidatos) {
+                            if (cand.textContent.includes("$")) {
+                                precioEl = cand;
+                                break;
+                            }
+                        }
+                    }
+                    let descripcionEl = producto.querySelector("p");
+                    if (descripcionEl && descripcionEl === precioEl) {
+                        const ps = producto.querySelectorAll("p");
+                        descripcionEl = Array.from(ps).find(p => p !== precioEl) || null;
+                    }
+
+                    const precioTexto = precioEl ? precioEl.textContent.trim() : "$0";
+                    const descripcionTexto = descripcionEl ? descripcionEl.textContent.trim() : "Sin descripción disponible.";
+
+                    const compra = producto.querySelector("a[href]");
+                    const accion = producto.getAttribute("data-accion") || "comprar";
+                    const textoBtn = accion === "reservar" ? "🔖 Reservar ahora" : "🛒 Comprar ahora";
+
+                    const prodIdReal = producto.id || id || imagen.getAttribute('src').split('/').pop();
+                    const tituloStr = titulo?.textContent.trim() || "Producto";
+                    const esPoleraOPoleron = pagina.toLowerCase().includes("polera") || 
+                                             pagina.toLowerCase().includes("poleron") || 
+                                             tituloStr.toLowerCase().includes("polera") || 
+                                             tituloStr.toLowerCase().includes("poleron");
+
+                    let btnCanjearHtml = "";
+                    if (esPoleraOPoleron && typeof window.obtenerPuntosCanje === "function") {
+                        const ptsReq = window.obtenerPuntosCanje(prodIdReal, tituloStr, pagina);
+                        btnCanjearHtml = `
+                            <a class="boton-comprar-individual"
+                               href="#"
+                               style="background: linear-gradient(135deg, #10b981, #059669); margin-left: 10px;"
+                               onclick="canjearProductoConPuntos('${prodIdReal}', '${tituloStr.replace(/'/g, "\\'")}', ${ptsReq}, '${imagen.getAttribute('src')}'); return false;">
+                                🎁 Canjear (${ptsReq} pts)
+                            </a>
+                        `;
+                    }
+
+                    contenedor.innerHTML = `
+                    <div class="producto-imagen-grande">
+                        <img src="${imagen.getAttribute("src")}" alt="${imagen.alt}">
+                    </div>
+
+                    <div class="producto-informacion">
+                        <h2>${tituloStr}</h2>
+                        <div class="producto-descripcion-seccion" style="margin-top: 20px; border-top: 2px solid #f0f0f0; padding-top: 15px;">
+                            <h3 style="color: #c026d3; margin-bottom: 8px; font-size: 1.15rem; font-weight: bold;">Descripción del Producto</h3>
+                            <p style="color: #444; line-height: 1.6; font-size: 1rem; margin: 0;">
+                                ${descripcionTexto}
+                            </p>
+                        </div>
+                        <strong>${precioTexto}</strong>
+                        <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 10px;">
+                            <a class="boton-comprar-individual"
+                               href="#"
+                               data-titulo="${tituloStr.replace(/\"/g, '&quot;')}"
+                               data-precio="${precioTexto}"
+                               data-imagen="${imagen.getAttribute('src')}"
+                               onclick="agregarAlCarrito('${prodIdReal}', this.dataset.titulo, this.dataset.precio, this.dataset.imagen); return false;">
+                                ${textoBtn}
+                            </a>
+                            ${btnCanjearHtml}
+                        </div>
+                    </div>
+                `;
+
+                    // ── Trailer embebido para GTA VI y FC 27 ──
+                    const tituloTexto = titulo?.textContent.trim().toLowerCase() || "";
+                    const trailers = {
+                        "grand theft auto vi": "https://www.youtube.com/embed/VQRLujxTm3c",
+                        "fc 27": "https://www.youtube.com/embed/MOclJJ7IpSY"
+                    };
+                    const trailerURL = Object.entries(trailers).find(([key]) => tituloTexto.includes(key))?.[1];
+
+                    let trailerSection = null;
+                    if (trailerURL) {
+                        trailerSection = document.createElement("section");
+                        trailerSection.style.cssText = `
+                            width: 100%;
+                            margin-top: 32px;
+                            padding: 32px;
+                            background: #0f0f1a;
+                            border-radius: 16px;
+                            text-align: center;
+                            box-sizing: border-box;
+                            box-shadow: 0 8px 32px rgba(147,51,234,0.22);
+                        `;
+                        trailerSection.innerHTML = `
+                            <h3 style="
+                                color: white;
+                                font-size: 1.5rem;
+                                margin: 0 0 20px 0;
+                                letter-spacing: 2px;
+                                font-weight: bold;
+                                text-transform: uppercase;
+                            ">🎬 Trailer Oficial</h3>
+                            <div style="
+                                position: relative;
+                                padding-bottom: 56.25%;
+                                height: 0;
+                                overflow: hidden;
+                                border-radius: 12px;
+                                border: 2px solid rgba(192,38,211,0.5);
+                            ">
+                                <iframe
+                                    src="${trailerURL}"
+                                    title="Trailer Oficial"
+                                    frameborder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    allowfullscreen
+                                    style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:10px;">
+                                </iframe>
+                            </div>
+                        `;
+                        // Se inserta DESPUÉS del section del producto (no dentro del flex)
+                        contenedor.insertAdjacentElement("afterend", trailerSection);
+                    }
+                    
+                    // ── SECCIÓN DE RESEÑAS (NUEVO) ──
+                    const prodIdUnico = producto.id || id || imagen.getAttribute("src").split("/").pop();
+                    const resenasKey = "resenas_" + prodIdUnico;
+                    let resenas = JSON.parse(localStorage.getItem(resenasKey)) || [];
+                    
+                    function generarHTMLResenas() {
+                        let html = "";
+                        if (resenas.length === 0) {
+                            html = "<p style='color:#666;'>Aún no hay reseñas. ¡Sé el primero en opinar!</p>";
+                        } else {
+                            html = resenas.map(r => `
+                                <div style="border-bottom:1px solid #e5e7eb; padding:12px 0;">
+                                    <div style="color:#eab308; font-size:1.1rem; margin-bottom:4px;">
+                                        ${"★".repeat(r.estrellas)}${"☆".repeat(5-r.estrellas)}
+                                    </div>
+                                    <p style="margin:0; font-size:0.95rem; color:#374151;">"${r.comentario}"</p>
+                                    <span style="font-size:0.8rem; color:#9ca3af;">- ${r.usuario}</span>
+                                </div>
+                            `).join("");
+                        }
+                        return html;
+                    }
+
+                    const reviewSection = document.createElement("section");
+                    reviewSection.style.cssText = "width: 100%; margin-top: 30px; padding: 25px; background: white; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); text-align:left; box-sizing:border-box;";
+                    
+                    reviewSection.innerHTML = `
+                        <h3 style="color:#1e293b; font-size:1.4rem; border-bottom:2px solid #f1f5f9; padding-bottom:10px; margin-bottom:20px;">Reseñas de Clientes</h3>
+                        <div id="listaResenas" style="margin-bottom:25px; max-height:200px; overflow-y:auto; padding-right:10px;">
+                            ${generarHTMLResenas()}
+                        </div>
+                        <div style="background:#f8fafc; padding:15px; border-radius:8px; border:1px solid #e2e8f0;">
+                            <h4 style="margin-top:0; color:#334155; font-size:1rem;">Dejar una reseña</h4>
+                            <select id="selectEstrellas" style="padding:8px; border-radius:6px; border:1px solid #cbd5e1; margin-bottom:10px; width:100%; max-width:200px; display:block;">
+                                <option value="5">⭐⭐⭐⭐⭐ Excelente</option>
+                                <option value="4">⭐⭐⭐⭐ Muy Bueno</option>
+                                <option value="3">⭐⭐⭐ Bueno</option>
+                                <option value="2">⭐⭐ Regular</option>
+                                <option value="1">⭐ Malo</option>
+                            </select>
+                            <textarea id="textoResena" rows="3" placeholder="¿Qué te pareció este producto?" style="width:100%; padding:10px; border-radius:6px; border:1px solid #cbd5e1; margin-bottom:10px; resize:vertical; font-family:inherit; box-sizing:border-box;"></textarea>
+                            <button id="btnEnviarResena" style="background:linear-gradient(135deg, #3b82f6, #2563eb); color:white; border:none; padding:10px 20px; border-radius:6px; font-weight:bold; cursor:pointer; width:100%;">Enviar Reseña</button>
+                        </div>
+                    `;
+                    
+                    const referenceNode = trailerSection || contenedor;
+                    referenceNode.insertAdjacentElement("afterend", reviewSection);
+
+                    reviewSection.querySelector("#btnEnviarResena").addEventListener("click", () => {
+                        const texto = reviewSection.querySelector("#textoResena").value.trim();
+                        const estrellas = parseInt(reviewSection.querySelector("#selectEstrellas").value);
+                        
+                        if (!texto) { alert("Por favor escribe un comentario."); return; }
+                        
+                        const usuarioLogueado = JSON.parse(localStorage.getItem("usuarioActivo"));
+                        const nombreUsuario = usuarioLogueado ? usuarioLogueado.nombres.split(" ")[0] : "Usuario Anónimo";
+                        
+                        resenas.unshift({
+                            usuario: nombreUsuario,
+                            estrellas: estrellas,
+                            comentario: texto
+                        });
+                        
+                        localStorage.setItem(resenasKey, JSON.stringify(resenas));
+                        reviewSection.querySelector("#listaResenas").innerHTML = generarHTMLResenas();
+                        reviewSection.querySelector("#textoResena").value = "";
+                    });
+                })
+                .catch(error => {
+                    console.error(error);
+                    contenedor.innerHTML = `<h2>${error.message}</h2>`;
+                });
+        }
+    </script>
+    <script src="producto-links.js"></script>
+</body>
+
+</html>

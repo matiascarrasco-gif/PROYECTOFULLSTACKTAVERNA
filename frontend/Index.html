@@ -1,0 +1,1267 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>La Taverna</title>
+    <link rel="stylesheet" href="estilos.css">
+    <link rel="icon" href="images/logopagina.jpg" type="image/jpeg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <header>
+        <h1>
+            <a href="Index.html">
+                <img src="images/logosinfondo.png" alt="La Taverna" class="logo-titulo">
+            </a>
+        </h1>
+
+        <nav class="menu-principal">
+            <a href="Juegos.html">Juegos Digitales</a>
+            <a href="Consolas.html">Consolas</a>
+            <a href="PcGamers.html">PC Gamers</a>
+            <a href="Mouse-Mousepad.html">Mouse / Mousepad</a>
+            <a href="SillasGamers.html">Sillas Gamers</a>
+            <a href="Accesorios.html">Accesorios</a>
+            <a href="Poleras.html">Poleras Personalizadas</a>
+            <a href="Poleron.html">Polerones Gamers Personalizados</a>
+            <a href="Blog.html">Blog</a>
+            <a href="ServicioTecnico.html">Servicio Tecnico</a>
+        </nav>
+    </header>
+
+
+    <main class="contenedor">
+        <section class="tarjeta bienvenida">
+
+            <p class="slider-label-destacados">✨ Anuncios Destacados ✨</p>
+
+            <div class="slider-container">
+
+                <button type="button" class="slider-btn prev-btn" onclick="moverSlide(-1)">&#10094;</button>
+                <button type="button" class="slider-btn next-btn" onclick="moverSlide(1)">&#10095;</button>
+
+                <div class="slider-slides">
+
+                    <div class="slide active">
+                        <img src="images/jasonylucia.jpg" alt="GTA VI" class="imagen-principal">
+
+                        <div class="slide-overlay">
+                            <h2>GTA VI</h2>
+                            <p>Reserva tu copia y disfruta esta increíble experiencia.</p>
+                            <a href="Compragtavi.html" class="boton-compra">Reservar ahora</a>
+                        </div>
+
+
+                    </div>
+
+                    <div class="slide">
+                        <img src="images/fc27.avif" alt="FIFA 27" class="imagen-principal">
+
+                        <div class="slide-overlay">
+                            <h2>FC 27</h2>
+                            <p>Vive la emoción del fútbol con FC 27.</p>
+                            <a href="Comprafc27.html" class="boton-compra">Reservar ahora</a>
+                        </div>
+
+
+                    </div>
+
+                    <div class="slide">
+                        <img src="images/mandogta6.webp" alt="Mando PS5 GTA VI" class="imagen-principal">
+
+                        <div class="slide-overlay">
+                            <h2>Mando PS5 GTA VI Limited Edition</h2>
+                            <p>Control personalizado oficial para los fanáticos de GTA.</p>
+                            <a href="Compramandogta6.html" class="boton-compra">Comprar ahora</a>
+                        </div>
+
+
+                    </div>
+                </div>
+
+                <!-- Puntos indicadores inferiores -->
+                <div class="slider-dots">
+                    <span class="dot active"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="tarjeta productos-seccion">
+            <div class="seccion-header">
+                <h2>Productos destacados</h2>
+            </div>
+
+            <div class="productos-slider">
+                <button class="producto-btn anterior" type="button">&#10094;</button>
+
+                <div class="productos-ventana">
+                    <div class="productos-track">
+                        <article class="producto">
+                            <a href="Consolas.html#Ps5Slim" class="producto-enlace">
+                                <img src="images/consolas/ps5slim.png" alt="PS5 Slim">
+                                <h3>Consola PS5 Slim</h3>
+                            </a>
+                            <p>$1.099.990</p>
+                            <a href="CompraPs5Slim.html">Comprar</a>
+                        </article>
+
+                        <article class="producto">
+                            <a href="Consolas.html#mandogta6" class="producto-enlace">
+                                <img src="images/mandogta6.png" alt="Mando gta 6">
+                                <h3>Mando GTA VI PS5 Edición Limitada</h3>
+                            </a>
+                            <p>$93.400</p>
+                            <a href="Compramandogta6.html">Comprar</a>
+                        </article>
+
+                        <article class="producto">
+                            <a href="PcGamers.html#PC6" class="producto-enlace">
+                                <img src="images/PCGamers/PC6.png" alt="PC Gamer 6">
+                                <h3>Pc Gamer Vibora V10 Ryzen 7</h3>
+                            </a>
+                            <p>$639.990</p>
+                            <a href="CompraRTX5090.html">Comprar</a>
+                        </article>
+
+                        <article class="producto">
+                            <img src="images/SillasGamers/silla11.png"
+                                alt="Silla Gamer GX2000 Reclinable Profesional Negra">
+                            <h3>Silla Gamer GX2000 Negra</h3>
+                            <p>$79.990</p>
+                            <a href="CompraRTX5090.html">Comprar</a>
+                        </article>
+
+                        <article class="producto">
+                            <a href="Juegos.html" class="producto-enlace">
+                                <img src="images/juegos/grand-theft-auto-vi-ps5.webp" alt="Grand Theft Auto VI">
+                                <h3>Grand Theft Auto VI</h3>
+                            </a>
+                            <p>$96.000</p>
+                            <a href="Compragtavi.html">Reservar ahora</a>
+                        </article>
+                    </div>
+                </div>
+
+                <button class="producto-btn siguiente" type="button">&#10095;</button>
+            </div>
+        </section>
+
+        <section class="tarjeta productos-seccion">
+            <div class="seccion-header">
+                <h2>Accesorios</h2>
+                <a href="Accesorios.html" class="ver-todo-btn">Ver todo &rarr;</a>
+            </div>
+
+            <div class="productos-slider">
+                <button class="producto-btn anterior" type="button">&#10094;</button>
+
+                <div class="productos-ventana">
+                    <div class="productos-track">
+
+                        <article class="producto">
+                            <a href="Accesorios.html#rtx5090" class="producto-enlace">
+                                <img src="images/accesorios/Rtx5090.webp" alt="RTX 5090">
+                                <h3>Tarjeta de Video RTX 5090</h3>
+                            </a>
+                            <p>$3.990.000</p>
+                            <a href="CompraRTX5090.html">Comprar</a>
+                        </article>
+
+                        <article class="producto">
+                            <a href="Accesorios.html#procesadorAMD" class="producto-enlace">
+                                <img src="images/accesorios/procesadoramd.webp" alt="Procesador AMD">
+                                <h3>Procesador AMD Ryzen 7 9800X3D</h3>
+                            </a>
+                            <p>$487.990</p>
+                            <a href="CompraProcesador.html">Comprar</a>
+                        </article>
+
+                        <article class="producto">
+                            <a href="Accesorios.html#teclado1" class="producto-enlace">
+                                <img src="images/accesorios/teclado1.webp" alt="Teclado Redragon">
+                                <h3>Teclado Gamer Redragon Kumara K552</h3>
+                            </a>
+                            <p>$52.000</p>
+                            <a href="Accesorios.html#teclado1">Comprar</a>
+                        </article>
+
+                        <article class="producto">
+                            <a href="Accesorios.html#teclado2" class="producto-enlace">
+                                <img src="images/accesorios/teclado2.webp" alt="Teclado mecánico inalámbrico">
+                                <h3>Teclado Mecánico Inalámbrico RGB</h3>
+                            </a>
+                            <p>$64.000</p>
+                            <a href="Accesorios.html#teclado2">Comprar</a>
+                        </article>
+
+                        <article class="producto">
+                            <a href="Accesorios.html#Microfono1" class="producto-enlace">
+                                <img src="images/accesorios/Microfono.webp" alt="Micrófono gaming">
+                                <h3>Micrófono Gaming con Reducción de Ruido</h3>
+                            </a>
+                            <p>$38.990</p>
+                            <a href="Accesorios.html#Microfono1">Comprar</a>
+                        </article>
+
+                        <article class="producto">
+                            <a href="Accesorios.html#Microfono2" class="producto-enlace">
+                                <img src="images/accesorios/microfono2.webp" alt="Micrófono RGB">
+                                <h3>Micrófono RGB para Streaming</h3>
+                            </a>
+                            <p>$27.990</p>
+                            <a href="Accesorios.html#Microfono2">Comprar</a>
+                        </article>
+
+                        <article class="producto">
+                            <a href="Accesorios.html#procesadorIntel" class="producto-enlace">
+                                <img src="images/accesorios/procesadorint.webp" alt="Procesador Intel">
+                                <h3>Procesador Intel Core i7-12700K</h3>
+                            </a>
+                            <p>$347.990</p>
+                            <a href="CompraProcesador.html">Comprar</a>
+                        </article>
+
+                        <article class="producto">
+                            <a href="Accesorios.html#SSD1TB" class="producto-enlace">
+                                <img src="images/accesorios/ssdking1tb.webp" alt="SSD Kingston 1TB">
+                                <h3>SSD Kingston NVMe 1TB</h3>
+                            </a>
+                            <p>$280.000</p>
+                            <a href="CompraSSD.html">Comprar</a>
+                        </article>
+
+                        <article class="producto">
+                            <a href="Accesorios.html#rtx3050" class="producto-enlace">
+                                <img src="images/accesorios/Rtx3050.webp" alt="RTX 3050">
+                                <h3>Tarjeta de Video RTX 3050</h3>
+                            </a>
+                            <p>$450.000</p>
+                            <a href="CompraRTX5090.html">Comprar</a>
+                        </article>
+
+                        <article class="producto">
+                            <a href="Accesorios.html#Ram16GB" class="producto-enlace">
+                                <img src="images/accesorios/Ram16gb.webp" alt="RAM 16GB">
+                                <h3>Kingston Memoria RAM DDR4 16GB</h3>
+                            </a>
+                            <p>$149.990</p>
+                            <a href="Accesorios.html#Ram16GB">Comprar</a>
+                        </article>
+
+                        <article class="producto">
+                            <a href="Accesorios.html#SSD2TB" class="producto-enlace">
+                                <img src="images/accesorios/ssdexterna2tb.webp" alt="SSD externo 2TB">
+                                <h3>Kingston SSD Externo XS1000 2TB</h3>
+                            </a>
+                            <p>$289.990</p>
+                            <a href="Accesorios.html#SSD2TB">Comprar</a>
+                        </article>
+
+                        <article class="producto">
+                            <a href="Accesorios.html#Ram8GB" class="producto-enlace">
+                                <img src="images/accesorios/Ram8gb.webp" alt="RAM 8GB">
+                                <h3>Kingston Memoria RAM DDR4 8GB</h3>
+                            </a>
+                            <p>$149.990</p>
+                            <a href="Accesorios.html#Ram8GB">Comprar</a>
+                        </article>
+
+                    </div>
+                </div>
+
+                <button class="producto-btn siguiente" type="button">&#10095;</button>
+            </div>
+        </section>
+
+        <section class="tarjeta productos-seccion">
+            <div class="seccion-header">
+                <h2>Consolas</h2>
+                <a href="Consolas.html" class="ver-todo-btn">Ver todo &rarr;</a>
+            </div>
+
+            <div class="productos-slider">
+                <button class="producto-btn anterior" type="button">&#10094;</button>
+
+                <div class="productos-ventana">
+                    <div class="productos-track">
+
+                        <article class="producto">
+                            <a href="Consolas.html#mandogta6" class="producto-enlace">
+                                <img src="images/mandogta6.png" alt="Mando gta 6">
+                                <h3>Mando GTA VI PS5 Edición Limitada</h3>
+                            </a>
+                            <p>$93.400</p>
+                            <a href="Compramandogta6.html">Comprar</a>
+                        </article>
+
+                        <article class="producto">
+                            <a href="Consolas.html#Ps5Digital" class="producto-enlace">
+                                <img src="images/consolas/ps5digital.png" alt="PS5 Digital">
+                                <h3>Consola PS5 HW Digital GT7</h3>
+                            </a>
+                            <p>$759.990</p>
+                            <a href="CompraPs5Digital.html">Comprar</a>
+                        </article>
+
+                        <article class="producto">
+                            <a href="Consolas.html#Ps5Slim" class="producto-enlace">
+                                <img src="images/consolas/ps5slim.png" alt="PS5 Slim">
+                                <h3>Consola PS5 Slim</h3>
+                            </a>
+                            <p>$1.099.990</p>
+                            <a href="CompraPs5Slim.html">Comprar</a>
+                        </article>
+
+                        <article class="producto">
+                            <a href="Consolas.html#Ps4Slim" class="producto-enlace">
+                                <img src="images/consolas/playstation4slim.png" alt="PS4 Slim">
+                                <h3>Sony PlayStation 4 Slim</h3>
+                            </a>
+                            <p>$339.990</p>
+                            <a href="CompraPs4Slim.html">Comprar</a>
+                        </article>
+
+                        <article class="producto">
+                            <a href="Consolas.html#switch2" class="producto-enlace">
+                                <img src="images/consolas/nintendoswitch2.png" alt="Nintendo Switch 2">
+                                <h3>Nintendo Switch 2</h3>
+                            </a>
+                            <p>$339.990</p>
+                            <a href="Compraswitch2.html">Comprar</a>
+                        </article>
+
+                        <article class="producto">
+                            <a href="Consolas.html#gameboy" class="producto-enlace">
+                                <img src="images/consolas/gameboyadvance.png" alt="Game Boy Advance">
+                                <h3>Game Boy Advance SP</h3>
+                            </a>
+                            <p>$205.990</p>
+                            <a href="Compragameboy.html">Comprar</a>
+                        </article>
+
+                        <article class="producto">
+                            <a href="Consolas.html#asusxbox" class="producto-enlace">
+                                <img src="images/consolas/consolaportatil.png" alt="ASUS Xbox ROG Ally">
+                                <h3>ASUS Xbox ROG Ally</h3>
+                            </a>
+                            <p>$699.990</p>
+                            <a href="Compraasusxbox.html">Comprar</a>
+                        </article>
+
+                        <article class="producto">
+                            <a href="Consolas.html#legiongo8" class="producto-enlace">
+                                <img src="images/consolas/consolaportatil2.png" alt="Legion Go">
+                                <h3>Lenovo Legion Go 8</h3>
+                            </a>
+                            <p>$1.319.990</p>
+                            <a href="Compralegiongo8.html">Comprar</a>
+                        </article>
+
+                        <article class="producto">
+                            <a href="Consolas.html#ps1" class="producto-enlace">
+                                <img src="images/consolas/ps1.png" alt="PlayStation 1">
+                                <h3>Sony PlayStation 1</h3>
+                            </a>
+                            <p>$129.990</p>
+                            <a href="Compraps1.html">Comprar</a>
+                        </article>
+
+                        <article class="producto">
+                            <a href="Consolas.html#ps3" class="producto-enlace">
+                                <img src="images/consolas/ps3.png" alt="PlayStation 3">
+                                <h3>Sony PlayStation 3</h3>
+                            </a>
+                            <p>$190.990</p>
+                            <a href="Compraps3.html">Comprar</a>
+                        </article>
+
+                        <article class="producto">
+                            <a href="Consolas.html#xbox" class="producto-enlace">
+                                <img src="images/consolas/xbox.png" alt="Xbox Series X">
+                                <h3>Xbox Series X</h3>
+                            </a>
+                            <p>$899.990</p>
+                            <a href="Compraxbox.html">Comprar</a>
+                        </article>
+
+                        <article class="producto">
+                            <a href="Consolas.html#ps2" class="producto-enlace">
+                                <img src="images/consolas/ps2.png" alt="PlayStation 2">
+                                <h3>Sony PlayStation 2</h3>
+                            </a>
+                            <p>$112.990</p>
+                            <a href="Compraps2.html">Comprar</a>
+                        </article>
+
+                        <article class="producto">
+                            <a href="Consolas.html#spidermanps5" class="producto-enlace">
+                                <img src="images/consolas/ps5spiderman.png" alt="PS5 Spider-Man">
+                                <h3>PlayStation 5 Spider-Man 2</h3>
+                            </a>
+                            <p>$809.990</p>
+                            <a href="Compraspidermanps5.html">Comprar</a>
+                        </article>
+
+                    </div>
+                </div>
+
+                <button class="producto-btn siguiente" type="button">&#10095;</button>
+            </div>
+        </section>
+
+        <section class="tarjeta productos-seccion">
+            <div class="seccion-header">
+                <h2>Mouse / Mousepad</h2>
+                <a href="Mouse-Mousepad.html" class="ver-todo-btn">Ver todo &rarr;</a>
+            </div>
+
+            <div class="productos-slider">
+                <button class="producto-btn anterior" type="button">&#10094;</button>
+
+                <div class="productos-ventana">
+                    <div class="productos-track">
+
+                        <article class="producto">
+                            <a href="Mouse-Mousepad.html#mouse1" class="producto-enlace">
+                                <img src="images/Mouses/1.jpg" alt="Mouse Gamer GXT 160 Ture RGB">
+                                <h3>Mouse Gamer GXT 160 Ture RGB</h3>
+                            </a>
+                            <p>$19.990</p>
+                            <a href="Compramouse1.html">Comprar</a>
+                        </article>
+
+                        <article class="producto">
+                            <a href="Mouse-Mousepad.html#mouse2" class="producto-enlace">
+                                <img src="images/Mouses/2.jpg" alt="Mouse HyperX Pulsefire Fuse">
+                                <h3>Mouse HyperX Pulsefire Fuse Wireless</h3>
+                            </a>
+                            <p>$34.990</p>
+                            <a href="Compramouse2.html">Comprar</a>
+                        </article>
+
+                        <article class="producto">
+                            <a href="Mouse-Mousepad.html#mouse3" class="producto-enlace">
+                                <img src="images/Mouses/3.jpg" alt="Mouse Gamer MU212">
+                                <h3>Mouse Gamer Alámbrico MU212</h3>
+                            </a>
+                            <p>$5.690</p>
+                            <a href="Compramouse3.html">Comprar</a>
+                        </article>
+
+                        <article class="producto">
+                            <a href="Mouse-Mousepad.html#mouse4" class="producto-enlace">
+                                <img src="images/Mouses/4.jpg" alt="Mouse Gamer G502 Hero">
+                                <h3>Mouse Gamer G502 Hero</h3>
+                            </a>
+                            <p>$44.990</p>
+                            <a href="Compramouse4.html">Comprar</a>
+                        </article>
+
+                        <article class="producto">
+                            <a href="Mouse-Mousepad.html#mouse5" class="producto-enlace">
+                                <img src="images/Mouses/5.jpg" alt="Mouse Gamer DeathAdder Essential">
+                                <h3>Mouse Gamer DeathAdder Essential</h3>
+                            </a>
+                            <p>$24.990</p>
+                            <a href="Compramouse5.html">Comprar</a>
+                        </article>
+
+                        <article class="producto">
+                            <a href="Mouse-Mousepad.html#mouse6" class="producto-enlace">
+                                <img src="images/Mouses/6.jpg" alt="Mouse Gamer Pulsefire Haste 2 Core">
+                                <h3>Mouse Gamer Pulsefire Haste 2 Core</h3>
+                            </a>
+                            <p>$45.990</p>
+                            <a href="Compramouse6.html">Comprar</a>
+                        </article>
+
+                        <article class="producto">
+                            <a href="Mouse-Mousepad.html#mouse7" class="producto-enlace">
+                                <img src="images/Mouses/7.jpg" alt="Mouse Gamer MU910">
+                                <h3>Mouse Gamer Alámbrico MU910</h3>
+                            </a>
+                            <p>$7.590</p>
+                            <a href="Compramouse7.html">Comprar</a>
+                        </article>
+
+                        <article class="producto">
+                            <a href="Mouse-Mousepad.html#mouse8" class="producto-enlace">
+                                <img src="images/Mouses/8.jpg" alt="Mouse Gamer G502 X PLUS">
+                                <h3>Mouse Gamer G502 X PLUS Wireless</h3>
+                            </a>
+                            <p>$149.990</p>
+                            <a href="Compramouse8.html">Comprar</a>
+                        </article>
+
+                        <article class="producto">
+                            <a href="Mouse-Mousepad.html#mousepad1" class="producto-enlace">
+                                <img src="images/Mousepads/mousepad1.webp" alt="Mousepad KUANGYE 90x40cm">
+                                <h3>Mousepad KUANGYE Antideslizante 90x40cm</h3>
+                            </a>
+                            <p>$22.470</p>
+                            <a href="Compramousepad1.html">Comprar</a>
+                        </article>
+
+                        <article class="producto">
+                            <a href="Mouse-Mousepad.html#mousepad2" class="producto-enlace">
+                                <img src="images/Mousepads/mousepad2.webp" alt="Mousepad KUANGYE Alfombrilla">
+                                <h3>Mousepad KUANGYE Alfombrilla Escritorio</h3>
+                            </a>
+                            <p>$39.950</p>
+                            <a href="Compramousepad2.html">Comprar</a>
+                        </article>
+
+                        <article class="producto">
+                            <a href="Mouse-Mousepad.html#mousepad3" class="producto-enlace">
+                                <img src="images/Mousepads/mousepad3.webp" alt="Mousepad RAZER Firefly V2">
+                                <h3>Mousepad RAZER Firefly V2 Chroma Pro</h3>
+                            </a>
+                            <p>$69.990</p>
+                            <a href="Compramousepad3.html">Comprar</a>
+                        </article>
+
+                        <article class="producto">
+                            <a href="Mouse-Mousepad.html#mousepad4" class="producto-enlace">
+                                <img src="images/Mousepads/mousepad4.webp" alt="Mousepad KUANGYE 800x400">
+                                <h3>Mousepad KUANGYE Gamer 800x400mm</h3>
+                            </a>
+                            <p>$20.990</p>
+                            <a href="Compramousepad4.html">Comprar</a>
+                        </article>
+
+                        <article class="producto">
+                            <a href="Mouse-Mousepad.html#mousepad5" class="producto-enlace">
+                                <img src="images/Mousepads/mousepad5.webp" alt="Mousepad FANTECH MPR800s Rosa">
+                                <h3>Mousepad FANTECH MPR800s RGB Rosa</h3>
+                            </a>
+                            <p>$16.490</p>
+                            <a href="Compramousepad5.html">Comprar</a>
+                        </article>
+
+                        <article class="producto">
+                            <a href="Mouse-Mousepad.html#mousepad6" class="producto-enlace">
+                                <img src="images/Mousepads/mousepad6.webp" alt="Mousepad DEFF Switch 90x40">
+                                <h3>Mousepad DEFF Gamer Switch 90x40</h3>
+                            </a>
+                            <p>$12.990</p>
+                            <a href="Compramousepad6.html">Comprar</a>
+                        </article>
+
+                        <article class="producto">
+                            <a href="Mouse-Mousepad.html#mousepad8" class="producto-enlace">
+                                <img src="images/Mousepads/mousepad8.webp" alt="Mousepad Oso Cafe XL">
+                                <h3>Mousepad Gamer Oso Cafe 90x40 XL</h3>
+                            </a>
+                            <p>$33.990</p>
+                            <a href="Compramousepad8.html">Comprar</a>
+                        </article>
+
+                        <article class="producto">
+                            <a href="Mouse-Mousepad.html#mousepad12" class="producto-enlace">
+                                <img src="images/Mousepads/mousepad12.webp" alt="Mousepad LOGITECH Lila">
+                                <h3>Mousepad LOGITECH Studio 30x70cm Lila</h3>
+                            </a>
+                            <p>$37.500</p>
+                            <a href="Compramousepad12.html">Comprar</a>
+                        </article>
+
+                    </div>
+                </div>
+
+                <button class="producto-btn siguiente" type="button">&#10095;</button>
+            </div>
+        </section>
+
+
+        <section class="tarjeta productos-seccion">
+            <div class="seccion-header">
+                <h2>Juegos Digitales</h2>
+                <a href="Juegos.html" class="ver-todo-btn">Ver todo &rarr;</a>
+            </div>
+
+            <div class="productos-slider">
+                <button class="producto-btn anterior" type="button">&#10094;</button>
+
+                <div class="productos-ventana">
+                    <div class="productos-track">
+
+                        <article class="producto">
+                            <a href="Juegos.html" class="producto-enlace">
+                                <img src="images/juegos/grand-theft-auto-vi-ps5.webp" alt="Grand Theft Auto VI">
+                                <h3>Grand Theft Auto VI</h3>
+                            </a>
+                            <p>$96.000</p>
+                            <a href="Compragtavi.html">Comprar</a>
+                        </article>
+
+                        <article class="producto">
+                            <a href="Juegos.html#fc27" class="producto-enlace">
+                                <img src="images/juegos/fc27-ps5-0.webp" alt="FC 27">
+                                <h3>FC 27</h3>
+                            </a>
+                            <p>$83.500</p>
+                            <a href="Comprafc27.html">Comprar</a>
+                        </article>
+
+                        <article class="producto">
+                            <a href="Juegos.html" class="producto-enlace">
+                                <img src="images/juegos/tlou.png" alt="The Last of Us Remastered">
+                                <h3>The Last of Us Remastered</h3>
+                            </a>
+                            <p>$9.000</p>
+                            <a href="Compratloups4.html">Comprar</a>
+                        </article>
+
+                        <article class="producto">
+                            <a href="Juegos.html" class="producto-enlace">
+                                <img src="images/juegos/marvels-spider-man-2-ps5.webp" alt="Spider-Man 2">
+                                <h3>Spider-Man 2</h3>
+                            </a>
+                            <p>$18.990</p>
+                            <a href="Compraspiderman2.html">Comprar</a>
+                        </article>
+
+                        <article class="producto">
+                            <a href="Juegos.html" class="producto-enlace">
+                                <img src="images/juegos/minecraft-ps4-0.webp" alt="Minecraft">
+                                <h3>Minecraft</h3>
+                            </a>
+                            <p>$6.000</p>
+                            <a href="Compraminecraft.html">Comprar</a>
+                        </article>
+
+                        <article class="producto">
+                            <a href="Juegos.html" class="producto-enlace">
+                                <img src="images/juegos/mortal-kombat-11-ultimate-ps4.jpg" alt="Mortal Kombat 11">
+                                <h3>Mortal Kombat 11 Ultimate</h3>
+                            </a>
+                            <p>$18.000</p>
+                            <a href="Compramortalkombat11.html">Comprar</a>
+                        </article>
+
+                        <article class="producto">
+                            <a href="Juegos.html" class="producto-enlace">
+                                <img src="images/juegos/red-dead-redemption-2-ps5.webp" alt="Red Dead Redemption 2">
+                                <h3>Red Dead Redemption 2</h3>
+                            </a>
+                            <p>$20.000</p>
+                            <a href="Comprardr2.html">Comprar</a>
+                        </article>
+
+                        <article class="producto">
+                            <a href="Juegos.html" class="producto-enlace">
+                                <img src="images/juegos/resident-evil-2-ps4.webp" alt="Resident Evil 2">
+                                <h3>Resident Evil 2 Remake</h3>
+                            </a>
+                            <p>$9.000</p>
+                            <a href="Compraresidentevil2.html">Comprar</a>
+                        </article>
+
+                        <article class="producto">
+                            <a href="Juegos.html" class="producto-enlace">
+                                <img src="images/juegos/god-of-war-ragnarok-ps5.webp" alt="God of War Ragnarok">
+                                <h3>God of War Ragnarok</h3>
+                            </a>
+                            <p>$16.000</p>
+                            <a href="Compragowragnarok.html">Comprar</a>
+                        </article>
+
+                        <article class="producto">
+                            <a href="Juegos.html" class="producto-enlace">
+                                <img src="images/juegos/cyberpunk-2077-ps5.webp" alt="Cyberpunk 2077">
+                                <h3>Cyberpunk 2077</h3>
+                            </a>
+                            <p>$16.000</p>
+                            <a href="Compracyberpunk2077.html">Comprar</a>
+                        </article>
+
+                        <article class="producto">
+                            <a href="Juegos.html" class="producto-enlace">
+                                <img src="images/juegos/it-takes-two-nintendo-switch.jpg" alt="It Takes Two">
+                                <h3>It Takes Two</h3>
+                            </a>
+                            <p>$42.000</p>
+                            <a href="Compraittakestwo.html">Comprar</a>
+                        </article>
+
+                        <article class="producto">
+                            <a href="Juegos.html" class="producto-enlace">
+                                <img src="images/juegos/kirby-and-the-forgotten-land-nintendo.jpg"
+                                    alt="Kirby and the Forgotten Land">
+                                <h3>Kirby and the Forgotten Land</h3>
+                            </a>
+                            <p>$45.000</p>
+                            <a href="Comprakirby.html">Comprar</a>
+                        </article>
+
+                        <article class="producto">
+                            <a href="Juegos.html" class="producto-enlace">
+                                <img src="images/juegos/cuphead-nintendo-switch.webp" alt="Cuphead">
+                                <h3>Cuphead</h3>
+                            </a>
+                            <p>$36.000</p>
+                            <a href="Compracuphead.html">Comprar</a>
+                        </article>
+
+                        <article class="producto">
+                            <a href="Juegos.html" class="producto-enlace">
+                                <img src="images/juegos/dragon-ball-z-kakarot.jpg" alt="Dragon Ball Z Kakarot">
+                                <h3>Dragon Ball Z: Kakarot</h3>
+                            </a>
+                            <p>$24.000</p>
+                            <a href="Compradragonballz.html">Comprar</a>
+                        </article>
+
+                        <article class="producto">
+                            <a href="Juegos.html" class="producto-enlace">
+                                <img src="images/juegos/the-legend-of-zelda-bow-switch-2.webp"
+                                    alt="Zelda Breath of the Wild">
+                                <h3>The Legend of Zelda: Breath of the Wild</h3>
+                            </a>
+                            <p>$33.800</p>
+                            <a href="Comprazeldabotw.html">Comprar</a>
+                        </article>
+
+                        <article class="producto">
+                            <a href="Juegos.html" class="producto-enlace">
+                                <img src="images/juegos/mario-kart-8-deluxe.jpg" alt="Mario Kart 8 Deluxe">
+                                <h3>Mario Kart 8 Deluxe</h3>
+                            </a>
+                            <p>$30.400</p>
+                            <a href="Compramariokart8.html">Comprar</a>
+                        </article>
+
+                        <article class="producto">
+                            <a href="Juegos.html" class="producto-enlace">
+                                <img src="images/juegos/mortalkombatps3.jpeg" alt="Mortal Kombat Komplete Edition">
+                                <h3>Mortal Kombat Komplete Edition</h3>
+                            </a>
+                            <p>$3.200</p>
+                            <a href="Compramortalkombat.html">Comprar</a>
+                        </article>
+
+                        <article class="producto">
+                            <a href="Juegos.html" class="producto-enlace">
+                                <img src="images/juegos/call-of-duty-black-ops-iii-ps3.webp"
+                                    alt="Call of Duty Black Ops III">
+                                <h3>Call of Duty Black Ops III</h3>
+                            </a>
+                            <p>$3.000</p>
+                            <a href="Compracodblackops3.html">Comprar</a>
+                        </article>
+
+                        <article class="producto">
+                            <a href="Juegos.html" class="producto-enlace">
+                                <img src="images/juegos/fifa-18-ps3.jpg" alt="FIFA 18">
+                                <h3>FIFA 18</h3>
+                            </a>
+                            <p>$4.000</p>
+                            <a href="Comprafifa18.html">Comprar</a>
+                        </article>
+
+                        <article class="producto">
+                            <a href="Juegos.html" class="producto-enlace">
+                                <img src="images/juegos/god-of-war-ascension.webp" alt="God of War Ascension">
+                                <h3>God of War Ascension</h3>
+                            </a>
+                            <p>$2.300</p>
+                            <a href="Compragowascension.html">Comprar</a>
+                        </article>
+
+                        <article class="producto">
+                            <a href="Juegos.html" class="producto-enlace">
+                                <img src="images/juegos/silent-hill-ps3.jpg" alt="Silent Hill">
+                                <h3>Silent Hill</h3>
+                            </a>
+                            <p>$2.800</p>
+                            <a href="Comprasilenthill.html">Comprar</a>
+                        </article>
+
+                        <article class="producto">
+                            <a href="Juegos.html" class="producto-enlace">
+                                <img src="images/juegos/farcry4ps3.jpeg" alt="Far Cry 4">
+                                <h3>Far Cry 4</h3>
+                            </a>
+                            <p>$3.600</p>
+                            <a href="Comprafarcry4.html">Comprar</a>
+                        </article>
+
+                        <article class="producto">
+                            <a href="Juegos.html" class="producto-enlace">
+                                <img src="images/juegos/pay-day-2-ps3.jpg" alt="PayDay 2">
+                                <h3>PayDay 2</h3>
+                            </a>
+                            <p>$2.000</p>
+                            <a href="Comprapayday2.html">Comprar</a>
+                        </article>
+
+                    </div>
+                </div>
+
+                <button class="producto-btn siguiente" type="button">&#10095;</button>
+            </div>
+        </section>
+
+        <section class="tarjeta productos-seccion">
+            <div class="seccion-header">
+                <h2>PC GAMERS</h2>
+                <a href="PcGamers.html" class="ver-todo-btn">Ver todo &rarr;</a>
+            </div>
+
+            <div class="productos-slider">
+                <button class="producto-btn anterior" type="button">&#10094;</button>
+
+                <div class="productos-ventana">
+                    <div class="productos-track">
+
+                        <article class="producto">
+                            <a href="PcGamers.html#PC1" class="producto-enlace">
+                                <img src="images/PCGamers/PCG1.png" alt="PC Gamer 1">
+                                <h3>Desktop Gamer Esgaming Ryzen 5 7600</h3>
+                            </a>
+                            <p>$1.499.000</p>
+                            <a href="CompraRTX5090.html">Comprar</a>
+                        </article>
+
+                        <article class="producto">
+                            <a href="PcGamers.html#PC2" class="producto-enlace">
+                                <img src="images/PCGamers/PC2.webp" alt="PC Gamer 2">
+                                <h3>Pc Gamer Warrior Ryzen 5500</h3>
+                            </a>
+                            <p>$824.990</p>
+                            <a href="CompraProcesador.html">Comprar</a>
+                        </article>
+
+                        <article class="producto">
+                            <a href="PcGamers.html#PC3" class="producto-enlace">
+                                <img src="images/PCGamers/PC3.png" alt="PC Gamer 3">
+                                <h3>PC Gamer AMD Ryzen 5 7600</h3>
+                            </a>
+                            <p>$1.599.990</p>
+                            <a href="CompraRTX5090.html">Comprar</a>
+                        </article>
+
+                        <article class="producto">
+                            <a href="PcGamers.html#PC4" class="producto-enlace">
+                                <img src="images/PCGamers/PC4.png" alt="PC Gamer 4">
+                                <h3>Teclado mecánico KAI 60% RGB</h3>
+                            </a>
+                            <p>$164.990</p>
+                            <a href="CompraRTX5090.html">Comprar</a>
+                        </article>
+
+                        <article class="producto">
+                            <a href="PcGamers.html#PC5" class="producto-enlace">
+                                <img src="images/PCGamers/PC5.png" alt="PC Gamer 5">
+                                <h3>Pc Snake Gamer Vibora Black V2</h3>
+                            </a>
+                            <p>$549.990</p>
+                            <a href="CompraRTX5090.html">Comprar</a>
+                        </article>
+
+                        <article class="producto">
+                            <a href="PcGamers.html#PC6" class="producto-enlace">
+                                <img src="images/PCGamers/PC6.png" alt="PC Gamer 6">
+                                <h3>Pc Gamer Vibora V10 Ryzen 7</h3>
+                            </a>
+                            <p>$639.990</p>
+                            <a href="CompraRTX5090.html">Comprar</a>
+                        </article>
+
+                        <article class="producto">
+                            <a href="PcGamers.html#PC7" class="producto-enlace">
+                                <img src="images/PCGamers/PC7.png" alt="PC Gamer 7">
+                                <h3>PC Titan Forge X9</h3>
+                            </a>
+                            <p>$499.990</p>
+                            <a href="CompraRTX5090.html">Comprar</a>
+                        </article>
+
+                        <article class="producto">
+                            <a href="PcGamers.html#PC8" class="producto-enlace">
+                                <img src="images/PCGamers/PC8.png" alt="PC Gamer 8">
+                                <h3>Desktop Gamer Ryzen 5 8400F</h3>
+                            </a>
+                            <p>$1.099.990</p>
+                            <a href="CompraRTX5090.html">Comprar</a>
+                        </article>
+
+                        <article class="producto">
+                            <a href="PcGamers.html#PC9" class="producto-enlace">
+                                <img src="images/PCGamers/PC9.png" alt="PC Gamer 9">
+                                <h3>Pc Gamer Intel Core i5 12400</h3>
+                            </a>
+                            <p>$1.199.990</p>
+                            <a href="CompraRTX5090.html">Comprar</a>
+                        </article>
+
+                        <article class="producto">
+                            <a href="PcGamers.html#PC10" class="producto-enlace">
+                                <img src="images/PCGamers/PC10.png" alt="PC Gamer 10">
+                                <h3>Pc Gamer AMD Ryzen 5 9600X</h3>
+                            </a>
+                            <p>$2.099.990</p>
+                            <a href="CompraRTX5090.html">Comprar</a>
+                        </article>
+
+                        <article class="producto">
+                            <a href="PcGamers.html#PC11" class="producto-enlace">
+                                <img src="images/PCGamers/PC11.png" alt="PC Gamer 11">
+                                <h3>PC Gamer Ryzen 7 9700X</h3>
+                            </a>
+                            <p>$3.231.990</p>
+                            <a href="CompraRTX5090.html">Comprar</a>
+                        </article>
+
+                        <article class="producto">
+                            <a href="PcGamers.html#PC12" class="producto-enlace">
+                                <img src="images/PCGamers/PC12.png" alt="PC Gamer 12">
+                                <h3>PC Gamer ESGAMING Ryzen 5 5500</h3>
+                            </a>
+                            <p>$349.990</p>
+                            <a href="CompraRTX5090.html">Comprar</a>
+                        </article>
+                    </div>
+                </div>
+
+                <button class="producto-btn siguiente" type="button">&#10095;</button>
+            </div>
+        </section>
+
+        <section class="tarjeta productos-seccion">
+            <div class="seccion-header">
+                <h2>Poleras</h2>
+                <a href="Poleras.html" class="ver-todo-btn">Ver todo &rarr;</a>
+            </div>
+
+            <div class="productos-slider">
+                <button class="producto-btn anterior" type="button">&#10094;</button>
+
+                <div class="productos-ventana">
+                    <div class="productos-track">
+                        <article class="producto">
+                            <img src="images/Poleras/Po1.png" alt="Polera Gaming Diseño 1">
+                            <h3>Polera Gaming Diseño 1</h3>
+                            <p>$20.000</p>
+                            <a href="CompraRTX5090.html">Comprar</a>
+                        </article>
+
+                        <article class="producto">
+                            <img src="images/Poleras/Po2.png" alt="Polera Gaming Diseño 2">
+                            <h3>Polera Gaming Diseño 2</h3>
+                            <p>$24.990</p>
+                            <a href="CompraProcesador.html">Comprar</a>
+                        </article>
+
+                        <article class="producto">
+                            <img src="images/Poleras/Po3.png" alt="Polera Gaming Diseño 3">
+                            <h3>Polera Gaming Diseño 3</h3>
+                            <p>$15.990</p>
+                            <a href="CompraRTX5090.html">Comprar</a>
+                        </article>
+
+                        <article class="producto">
+                            <img src="images/Poleras/Po4.png" alt="Polera Gaming Diseño 4">
+                            <h3>Polera Gaming Diseño 4</h3>
+                            <p>$9.990</p>
+                            <a href="CompraRTX5090.html">Comprar</a>
+                        </article>
+
+                        <article class="producto">
+                            <img src="images/Poleras/Po5.jpg" alt="Polera Gaming Diseño 5">
+                            <h3>Polera Gaming Diseño 5</h3>
+                            <p>$14.990</p>
+                            <a href="CompraRTX5090.html">Comprar</a>
+                        </article>
+
+                        <article class="producto">
+                            <img src="images/Poleras/Po6.png" alt="Polera Gaming Diseño 6">
+                            <h3>Polera Gaming Diseño 6</h3>
+                            <p>$39.990</p>
+                            <a href="CompraRTX5090.html">Comprar</a>
+                        </article>
+
+                        <article class="producto">
+                            <img src="images/Poleras/Po7.jpeg" alt="Polera Gaming Diseño 7">
+                            <h3>Polera Gaming Diseño 7</h3>
+                            <p>$4.990</p>
+                            <a href="CompraRTX5090.html">Comprar</a>
+                        </article>
+
+                        <article class="producto">
+                            <img src="images/Poleras/Po8.png" alt="Polera Gaming Diseño 8">
+                            <h3>Polera Gaming Diseño 8</h3>
+                            <p>$50.000</p>
+                            <a href="CompraRTX5090.html">Comprar</a>
+                        </article>
+
+                        <article class="producto">
+                            <img src="images/Poleras/Po9.png" alt="Polera Gaming Diseño 9">
+                            <h3>Polera Gaming Diseño 9</h3>
+                            <p>$49.990</p>
+                            <a href="CompraRTX5090.html">Comprar</a>
+                        </article>
+
+                        <article class="producto">
+                            <img src="images/Poleras/Po10.png" alt="Polera Gaming Diseño 10">
+                            <h3>Polera Gaming Diseño 10</h3>
+                            <p>$19.990</p>
+                            <a href="CompraRTX5090.html">Comprar</a>
+                        </article>
+
+                        <article class="producto">
+                            <img src="images/Poleras/Po11.jpg" alt="Polera Gaming Diseño 11">
+                            <h3>Polera Gaming Diseño 11</h3>
+                            <p>$9.990</p>
+                            <a href="CompraRTX5090.html">Comprar</a>
+                        </article>
+
+                        <article class="producto">
+                            <img src="images/Poleras/Po12.webp" alt="Polera Gaming Diseño 12">
+                            <h3>Polera Gaming Diseño 12</h3>
+                            <p>$10.000</p>
+                            <a href="CompraRTX5090.html">Comprar</a>
+                        </article>
+                    </div>
+                </div>
+
+                <button class="producto-btn siguiente" type="button">&#10095;</button>
+            </div>
+        </section>
+
+        <section class="tarjeta productos-seccion">
+            <div class="seccion-header">
+                <h2>Polerones Gamers Personalizados</h2>
+                <a href="Poleron.html" class="ver-todo-btn">Ver todo &rarr;</a>
+            </div>
+
+            <div class="productos-slider">
+                <button class="producto-btn anterior" type="button">&#10094;</button>
+
+                <div class="productos-ventana">
+                    <div class="productos-track">
+                        <article class="producto">
+                            <img src="images/Polerones/Pol1.png" alt="Poleron Gamer Personalizado Merch 1">
+                            <h3>Poleron Gamer Merch 1</h3>
+                            <p>$19.990</p>
+                            <a href="CompraRTX5090.html">Comprar</a>
+                        </article>
+
+                        <article class="producto">
+                            <img src="images/Polerones/Pol2.png" alt="Poleron Gamer Personalizado Merch 2">
+                            <h3>Poleron Gamer Merch 2</h3>
+                            <p>$21.990</p>
+                            <a href="CompraProcesador.html">Comprar</a>
+                        </article>
+
+                        <article class="producto">
+                            <img src="images/Polerones/Pol3.jpg" alt="Poleron Gamer Personalizado Merch 3">
+                            <h3>Poleron Gamer Merch 3</h3>
+                            <p>$49.990</p>
+                            <a href="CompraRTX5090.html">Comprar</a>
+                        </article>
+
+                        <article class="producto">
+                            <img src="images/Polerones/Pol4.png" alt="Poleron Gamer Personalizado Merch 4">
+                            <h3>Poleron Gamer Merch 4</h3>
+                            <p>$64.990</p>
+                            <a href="CompraRTX5090.html">Comprar</a>
+                        </article>
+
+                        <article class="producto">
+                            <img src="images/Polerones/Pol5.png" alt="Poleron Gamer Personalizado Merch 5">
+                            <h3>Poleron Gamer Merch 5</h3>
+                            <p>$9.990</p>
+                            <a href="CompraRTX5090.html">Comprar</a>
+                        </article>
+
+                        <article class="producto">
+                            <img src="images/Polerones/Pol6.png" alt="Poleron Gamer Personalizado Merch 6">
+                            <h3>Poleron Gamer Merch 6</h3>
+                            <p>$29.990</p>
+                            <a href="CompraRTX5090.html">Comprar</a>
+                        </article>
+
+                        <article class="producto">
+                            <img src="images/Polerones/Pol7.png" alt="Poleron Gamer Personalizado Merch 7">
+                            <h3>Poleron Gamer Merch 7</h3>
+                            <p>$20.990</p>
+                            <a href="CompraRTX5090.html">Comprar</a>
+                        </article>
+
+                        <article class="producto">
+                            <img src="images/Polerones/Pol8.avif" alt="Poleron Gamer Personalizado Merch 8">
+                            <h3>Poleron Gamer Merch 8</h3>
+                            <p>$14.990</p>
+                            <a href="CompraRTX5090.html">Comprar</a>
+                        </article>
+
+                        <article class="producto">
+                            <img src="images/Polerones/Pol9.png" alt="Poleron Gamer Personalizado Merch 9">
+                            <h3>Poleron Gamer Merch 9</h3>
+                            <p>$11.990</p>
+                            <a href="CompraRTX5090.html">Comprar</a>
+                        </article>
+
+                        <article class="producto">
+                            <img src="images/Polerones/Pol10.jpg" alt="Poleron Gamer Personalizado Merch 10">
+                            <h3>Poleron Gamer Merch 10</h3>
+                            <p>$69.000</p>
+                            <a href="CompraRTX5090.html">Comprar</a>
+                        </article>
+
+                        <article class="producto">
+                            <img src="images/Polerones/Pol11.jpg" alt="Poleron Gamer Personalizado Merch 11">
+                            <h3>Poleron Gamer Merch 11</h3>
+                            <p>$17.990</p>
+                            <a href="CompraRTX5090.html">Comprar</a>
+                        </article>
+
+                        <article class="producto">
+                            <img src="images/Polerones/Pol12.jpg" alt="Poleron Gamer Personalizado Merch 12">
+                            <h3>Poleron Gamer Merch 12</h3>
+                            <p>$19.500</p>
+                            <a href="CompraRTX5090.html">Comprar</a>
+                        </article>
+                    </div>
+                </div>
+
+                <button class="producto-btn siguiente" type="button">&#10095;</button>
+            </div>
+        </section>
+
+        <section class="tarjeta productos-seccion">
+            <div class="seccion-header">
+                <h2>Sillas Gamers</h2>
+                <a href="SillasGamers.html" class="ver-todo-btn">Ver todo &rarr;</a>
+            </div>
+
+            <div class="productos-slider">
+                <button class="producto-btn anterior" type="button">&#10094;</button>
+
+                <div class="productos-ventana">
+                    <div class="productos-track">
+                        <article class="producto">
+                            <img src="images/SillasGamers/silla1.webp" alt="Silla Gamer Pro DXRacer F Series P132">
+                            <h3>Silla Gamer Pro DXRacer</h3>
+                            <p>$229.990</p>
+                            <a href="CompraRTX5090.html">Comprar</a>
+                        </article>
+
+                        <article class="producto">
+                            <img src="images/SillasGamers/silla2.png"
+                                alt="Silla Gamer Profesional Reclinable Calidad Premiun Homer">
+                            <h3>Silla Gamer Profesional Homer</h3>
+                            <p>$99.990</p>
+                            <a href="CompraProcesador.html">Comprar</a>
+                        </article>
+
+                        <article class="producto">
+                            <img src="images/SillasGamers/silla3.png" alt="Silla Gamer Con Luz Led y Masajeador Verde">
+                            <h3>Silla Gamer Led Verde</h3>
+                            <p>$129.990</p>
+                            <a href="CompraRTX5090.html">Comprar</a>
+                        </article>
+
+                        <article class="producto">
+                            <img src="images/SillasGamers/silla4.png"
+                                alt="Silla Gamer de oficina Profesional Ulrik Morada">
+                            <h3>Silla Gamer Ulrik Morada</h3>
+                            <p>$150.000</p>
+                            <a href="CompraRTX5090.html">Comprar</a>
+                        </article>
+
+                        <article class="producto">
+                            <img src="images/SillasGamers/silla5.png"
+                                alt="Silla Gamer de oficina Profesional Ulrik Celeste">
+                            <h3>Silla Gamer Ulrik Celeste</h3>
+                            <p>$129.990</p>
+                            <a href="CompraRTX5090.html">Comprar</a>
+                        </article>
+
+                        <article class="producto">
+                            <img src="images/SillasGamers/silla6.png" alt="Silla Gamer Vidita GX2000 Blanca">
+                            <h3>Silla Gamer Vidita GX2000</h3>
+                            <p>$129.990</p>
+                            <a href="CompraRTX5090.html">Comprar</a>
+                        </article>
+
+                        <article class="producto">
+                            <img src="images/SillasGamers/silla7.png" alt="Silla Gamer Premium ES900 Celeste">
+                            <h3>Silla Gamer Premium ES900</h3>
+                            <p>$119.990</p>
+                            <a href="CompraRTX5090.html">Comprar</a>
+                        </article>
+
+                        <article class="producto">
+                            <img src="images/SillasGamers/silla8.png"
+                                alt="Silla Gamer Ergonómica Negra Con Luces Led RGB">
+                            <h3>Silla Gamer RGB Negra</h3>
+                            <p>$149.990</p>
+                            <a href="CompraRTX5090.html">Comprar</a>
+                        </article>
+
+                        <article class="producto">
+                            <img src="images/SillasGamers/silla9.png"
+                                alt="Silla Gamer Luz RGB Parlante Reposapiés Masajeador">
+                            <h3>Silla Gamer RGB Parlante</h3>
+                            <p>$199.990</p>
+                            <a href="CompraRTX5090.html">Comprar</a>
+                        </article>
+
+                        <article class="producto">
+                            <img src="images/SillasGamers/silla10.png" alt="Silla Gamer Ergonómica Reclinable Blanca">
+                            <h3>Silla Gamer Blanca Ergonómica</h3>
+                            <p>$159.990</p>
+                            <a href="CompraRTX5090.html">Comprar</a>
+                        </article>
+
+                        <article class="producto">
+                            <img src="images/SillasGamers/silla11.png"
+                                alt="Silla Gamer GX2000 Reclinable Profesional Negra">
+                            <h3>Silla Gamer GX2000 Negra</h3>
+                            <p>$79.990</p>
+                            <a href="CompraRTX5090.html">Comprar</a>
+                        </article>
+
+                        <article class="producto">
+                            <img src="images/SillasGamers/silla12.png" alt="Silla Gamer Kronos Hunter Pro">
+                            <h3>Silla Gamer Kronos Hunter Pro</h3>
+                            <p>$149.990</p>
+                            <a href="CompraRTX5090.html">Comprar</a>
+                        </article>
+                    </div>
+                </div>
+
+                <button class="producto-btn siguiente" type="button">&#10095;</button>
+            </div>
+        </section>
+
+    </main>
+
+
+    <footer class="pie-pagina">
+        <p> <strong> Servicio Técnico: </strong>
+            Funcionamiento de Lunes a Viernes
+            Horarios: 09:00am hasta 21:00pm
+            <strong> Contacto via correo: </strong>
+            latavernast@contacto.com
+        </p>
+    </footer>
+
+    <script src="script.js"></script>
+
+    <script src="producto-links.js"></script>
+
+    <script src="admin.js"></script>
+
+</body>
+
+</html>
